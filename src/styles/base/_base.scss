@@ -1,0 +1,44 @@
+@use '../abstracts/' as *;
+@use '../utilities/theme-utilities' as *;
+
+:root {
+  @include generate-theme-variables;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+}
+
+/**
+  * Removes default focus styles for elements 
+  * (MANUALLY ADD FOCUS STYLES LATER)
+  */
+* {
+  &:focus {
+    outline: none;
+  }
+}
+
+%clickable {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+/**
+  * Add 'cursor: pointer' rule to all tags and aria-roles where
+  * a pointer cursor would be applicable
+  */
+button,
+label,
+[role='button'],
+[role='checkbox'],
+[role='switch'] {
+  @extend %clickable;
+}
