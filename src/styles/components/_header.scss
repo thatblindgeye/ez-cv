@@ -1,0 +1,15 @@
+header {
+  background-color: var(--color-bg-header);
+  padding: 10px;
+}
+
+.c-accessibility-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-bg-accessibility-bar);
+}
+
+.c-app-logo {
+  margin-top: 10px;
+}

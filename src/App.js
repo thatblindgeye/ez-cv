@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
+import Header from './components/Header/Header';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    return <div></div>;
+    return (
+      <>
+        <Header />
+        <main></main>
+        <footer></footer>
+      </>
+    );
   }
 }
 
