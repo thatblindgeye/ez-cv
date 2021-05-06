@@ -7,3 +7,24 @@ body {
 .c-app-logo {
   font-size: 3rem;
 }
+
+.c-checkbox {
+  &__label {
+    font-size: 1rem;
+  }
+}
+
+.c-input {
+  &__label {
+    font-size: 1rem;
+  }
+
+  &__field {
+    font-size: 1rem;
+  }
+}
+
+.required-indicator {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
