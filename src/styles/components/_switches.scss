@@ -1,38 +1,37 @@
 .c-switch {
   --base-size: 1rem;
+  --large: 1.25;
+  --x-large: 1.5;
 
+  display: flex;
+  align-items: center;
+  width: 3.5rem;
+  padding: 5px;
+  background-color: var(--color-bg-base);
   border: 1px solid var(--color-border-primary);
+  border-radius: 25px;
 
-  &--theme {
-    display: flex;
-    align-items: center;
-    width: 3.5rem;
-    padding: 5px;
-    background-color: var(--color-bg-base);
-    border-radius: 25px;
-
-    &[aria-checked='false'] {
-      justify-content: flex-start;
-    }
-
-    &[aria-checked='true'] {
-      justify-content: flex-end;
-    }
+  &[aria-checked='false'] {
+    justify-content: flex-start;
   }
 
-  // Size modifiers
+  &[aria-checked='true'] {
+    justify-content: flex-end;
+  }
+
+  // Size modifiers for switch icon
   &__icon--base {
     height: var(--base-size);
     width: var(--base-size);
   }
 
-  &__icon--medium {
-    height: calc(var(--base-size) * 1.25);
-    width: calc(var(--base-size) * 1.25);
+  &__icon--large {
+    height: calc(var(--base-size) * var(--large));
+    width: calc(var(--base-size) * var(--large));
   }
 
-  &__icon--large {
-    height: calc(var(--base-size) * 1.5);
-    width: calc(var(--base-size) * 1.5);
+  &__icon--x-large {
+    height: calc(var(--base-size) * var(--x-large));
+    width: calc(var(--base-size) * var(--x-large));
   }
 }

@@ -39,13 +39,12 @@ class Accessibility extends Component {
   render() {
     const { theme } = this.state;
     const { handleThemeToggle } = this;
-    const iconClasses = 'c-switch__icon c-switch__icon--medium';
 
     return (
       <div className='c-accessibility-container'>
         <div
           role='switch'
-          className='c-switch c-switch--theme'
+          className='c-switch'
           aria-checked={theme === 'dark' ? 'false' : 'true'}
           aria-label='enable light theme'
           tabIndex='0'
@@ -54,9 +53,9 @@ class Accessibility extends Component {
           onKeyDown={handleThemeToggle}
         >
           {theme === 'dark' ? (
-            <DarkThemeIcon className={iconClasses} />
+            <DarkThemeIcon className={this.props.iconClasses} />
           ) : (
-            <LightThemeIcon className={iconClasses} />
+            <LightThemeIcon className={this.props.iconClasses} />
           )}
         </div>
       </div>
