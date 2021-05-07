@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EducationSection from './Education/EducationSection';
 
 export default class CV extends Component {
   constructor(props) {
@@ -7,6 +8,10 @@ export default class CV extends Component {
   }
 
   render() {
-    return <form autoComplete='off' noValidate></form>;
+    return (
+      <form autoComplete='off' noValidate>
+        <EducationSection editMode={this.state.editMode} />
+      </form>
+    );
   }
 }
