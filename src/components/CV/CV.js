@@ -4,7 +4,7 @@ import EducationSection from './Education/EducationSection';
 export default class CV extends Component {
   constructor(props) {
     super(props);
-    this.state = { editMode: true };
+    this.state = { editMode: false };
   }
 
   render() {

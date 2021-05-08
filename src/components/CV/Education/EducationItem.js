@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDate } from '../../../scripts/date-formatter';
 import SimpleInput from '../../Inputs/SimpleInput';
 import DateRange from '../../Inputs/DateRange';
 
@@ -34,7 +35,16 @@ export default function EducationItem({
     </div>
   );
 
-  const itemPreview = <div className='education__item--preview'>Preview</div>;
+  const itemPreview = (
+    <div className='education__item--preview'>
+      <div>{degree}</div>
+      <div>{school}</div>
+      <div>
+        <span>{formatDate(startDate)}</span>-
+        <span>{enrolled ? endDate : formatDate(endDate)}</span>
+      </div>
+    </div>
+  );
 
   return <>{editMode ? itemEdit : itemPreview}</>;
 }

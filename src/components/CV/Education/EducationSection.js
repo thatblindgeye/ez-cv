@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { Component } from 'react';
+import { nanoid } from 'nanoid';
 import EducationItem from './EducationItem';
 
 export default class EducationSection extends Component {
@@ -17,28 +18,24 @@ export default class EducationSection extends Component {
       },
       educationList: [
         {
-          id: 5,
+          id: nanoid(15),
           degree: 'AS Accounting',
           school: 'Fake University',
           startDate: '2015-01-01',
-          endDate: '',
+          endDate: '2017-01-05',
           currentlyEnrolled: false,
         },
         {
-          id: 15,
+          id: nanoid(15),
           degree: 'AS Math',
           school: 'Real University',
-          startDate: '2018-01-01',
-          endDate: '',
+          startDate: '2018-05-01',
+          endDate: 'present',
           currentlyEnrolled: true,
         },
       ],
     };
   }
-
-  handleEnrolledCheckbox = (item) => {
-    console.log(item);
-  };
 
   render() {
     return (
