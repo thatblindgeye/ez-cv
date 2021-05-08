@@ -32,6 +32,9 @@ export default function EducationItem({
         endDate={endDate}
         enrolled={enrolled}
       />
+      <button type='button' value='delete'>
+        Delete
+      </button>
     </div>
   );
 

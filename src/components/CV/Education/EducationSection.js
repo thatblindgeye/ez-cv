@@ -68,6 +68,9 @@ export default class EducationSection extends Component {
             );
           })}
         </ul>
+        <button type='button' value='add'>
+          Add Education
+        </button>
       </fieldset>
     );
   }
