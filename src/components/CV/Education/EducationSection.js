@@ -36,11 +36,8 @@ export default class EducationSection extends Component {
     };
   }
 
-  handleEnrolledCheckbox = (e, item) => {
-    if (e.type === 'click' || e.key === ' ' || e.key === 'Enter') {
-      e.preventDefault();
-      console.log(item);
-    }
+  handleEnrolledCheckbox = (item) => {
+    console.log(item);
   };
 
   render() {
@@ -69,9 +66,6 @@ export default class EducationSection extends Component {
                   startDate={startDate}
                   endDate={endDate}
                   enrolled={currentlyEnrolled}
-                  clickEnrolled={(e) => {
-                    this.handleEnrolledCheckbox(e, item);
-                  }}
                 />
               </li>
             );

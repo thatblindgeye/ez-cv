@@ -10,7 +10,6 @@ export default function EducationItem({
   startDate,
   endDate,
   enrolled,
-  clickEnrolled,
 }) {
   const itemEdit = (
     <div className='education__item--edit'>
@@ -31,7 +30,6 @@ export default function EducationItem({
         startDate={startDate}
         endDate={endDate}
         enrolled={enrolled}
-        clickEnrolled={clickEnrolled}
       />
     </div>
   );

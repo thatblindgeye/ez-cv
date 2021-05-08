@@ -10,10 +10,10 @@ import React from 'react';
  */
 
 export default function SimpleInput(props) {
-  const { id, label, type, value, disabled, required } = props;
+  const { id, label, type, defaultValue, disabled, required } = props;
 
   const requiredIndicator = required ? (
-    <span class='required-indicator' aria-hidden='true'>
+    <span className='required-indicator' aria-hidden='true'>
       *
     </span>
   ) : null;
@@ -28,7 +28,7 @@ export default function SimpleInput(props) {
         type={type}
         id={id}
         className='c-input__field'
-        defaultValue={value}
+        defaultValue={defaultValue}
         disabled={disabled}
         required={required}
         aria-required={required}
