@@ -8,9 +8,14 @@
 $light: (
   color-bg-accessibility-bar: color($neutral, 100),
   color-bg-base: color($neutral, 75),
+  color-bg-checkbox-hover: color($neutral, 300),
   color-bg-header: color($neutral, 100),
-  color-border-input: color($neutral, 900, 0.6),
+  color-bg-input: color($neutral, 50),
+  color-border-input: color($neutral, 700, 0.6),
+  color-border-input-focus: color($neutral, 900),
   color-border-primary: color($neutral, 900),
+  // Change calendar icon in Chrome
+  color-date-input-icon: invert(0%),
   color-form-required: rgb(150, 0, 0),
   color-link-unvisited: rgb(20, 20, 255),
   color-link-visited: rgb(116, 0, 194),
@@ -25,4 +30,5 @@ $light: (
   color-text-msg-success: color($neutral, 900),
   color-text-msg-warning: color($neutral, 800),
   color-text-primary: color($neutral, 850),
+  color-text-primary-disabled: color($neutral, 850, $disabled),
 );

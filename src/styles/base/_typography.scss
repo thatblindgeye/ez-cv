@@ -1,5 +1,7 @@
+$base-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+
 body {
-  font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+  font-family: $base-family;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -9,14 +11,22 @@ body {
 }
 
 .c-checkbox {
-  &__label {
-    font-size: 1rem;
-  }
+  font-size: 1.125rem;
 }
 
 .c-input {
   &__label {
+    font-size: 0.9rem;
+  }
+
+  &__field {
     font-size: 1rem;
+  }
+}
+
+.c-date-range {
+  &__label {
+    font-size: 0.9rem;
   }
 
   &__field {
@@ -27,4 +37,9 @@ body {
 .required-indicator {
   font-size: 1.25rem;
   font-weight: bold;
+  line-height: 1rem;
+}
+
+input[type='date'] {
+  font-family: $base-family;
 }

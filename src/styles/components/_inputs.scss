@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as *;
+
 .c-checkbox {
   --base-size: 1rem;
   --large: 1.25;
@@ -13,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid white;
+    border: 2px solid var(--color-border-input);
     border-radius: 5px;
 
     // Size modifiers for checkbox field
@@ -49,13 +51,13 @@
   }
 
   &:focus-within .c-checkbox__field {
-    background-color: rgb(48, 48, 48);
+    background-color: var(--color-bg-checkbox-hover);
     outline: 2px solid var(--color-outline-focus-primary);
     outline-offset: 2px;
   }
 
   &:hover .c-checkbox__field {
-    background-color: rgb(48, 48, 48);
+    background-color: var(--color-bg-checkbox-hover);
   }
 
   &__hidden {
@@ -71,21 +73,51 @@
   }
 }
 
+%inputs {
+  padding: 6px;
+  background-color: var(--color-bg-input);
+  color: var(--text-primary);
+  border: 2px solid var(--color-border-input);
+
+  &:focus {
+    border: 2px solid var(--color-border-input-focus);
+  }
+}
+
 .c-input {
   max-width: 20rem;
-  width: 95%;
-  margin: auto;
+  width: 100%;
 
   &__label {
     display: flex;
     align-items: center;
-    font-size: 1rem;
   }
 
   &__field {
+    @extend %inputs;
     width: 100%;
-    padding: 6px;
-    border: 1px solid var(--color-border-input);
+  }
+}
+
+.c-date-range {
+  display: flex;
+  flex-direction: column;
+  max-width: 11rem;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__field {
+    @extend %inputs;
+    margin-bottom: 10px;
+    transition: opacity 200ms linear;
+
+    &::-webkit-calendar-picker-indicator {
+      filter: var(--color-date-input-icon);
+    }
   }
 }
 
@@ -94,6 +126,8 @@
   top: 0.2rem;
   margin-right: 0.3rem;
   color: var(--color-form-required);
-  font-size: 1.25rem;
-  line-height: 1rem;
+}
+
+input[aria-disabled='true'] {
+  opacity: $disabled;
 }
