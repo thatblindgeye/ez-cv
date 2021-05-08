@@ -10,21 +10,6 @@ class App extends Component {
       <>
         <Header />
         <main>
-          {/* Testing components */}
-          <Checkbox
-            id='tester'
-            fieldClass='c-checkbox--large'
-            label='Base'
-            checked='false'
-          />
-          <SimpleInput id='tester2' label='Name' type='text' required />
-          <SimpleInput
-            id='tester3'
-            label='Location'
-            type='text'
-            disabled={true}
-          />
-          {/* End testing components */}
           <CV />
         </main>
         <footer></footer>
