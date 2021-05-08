@@ -4,6 +4,12 @@ import Checkbox from './Checkbox';
 export default function DateRange(props) {
   const { dateID, startDate, endDate, enrolled } = props;
 
+  const preventDisabledInteraction = (e) => {
+    if (enrolled && (e.type === 'click' || e.key !== 'Tab')) {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div className='c-date-range'>
       <div className='c-date-range__container'>
@@ -27,8 +33,9 @@ export default function DateRange(props) {
           id={`end-date-${dateID}`}
           className='c-date-range__field'
           defaultValue={endDate}
-          disabled={enrolled ? true : false}
-          tabIndex={enrolled ? '-1' : '0'}
+          aria-disabled={enrolled ? true : false}
+          onClick={preventDisabledInteraction}
+          onKeyDown={preventDisabledInteraction}
         />
         <Checkbox
           id={`enrolled-${dateID}`}
