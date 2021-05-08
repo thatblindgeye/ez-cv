@@ -7,4 +7,6 @@ const calculateDate = (date) =>
   );
 
 // Return date as a string
-export const formatDate = (date) => format(calculateDate(date), 'MMMM yyyy');
+export default function formatDate(date) {
+  return format(calculateDate(date), 'MMMM yyyy');
+}
