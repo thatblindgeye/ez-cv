@@ -2,6 +2,7 @@ import React from 'react';
 import formatDate from '../../../scripts/date-formatter';
 import SimpleInput from '../../Inputs/SimpleInput';
 import DateRange from '../../Inputs/DateRange';
+import TextArea from '../../Inputs/TextArea';
 
 export default function WorkItem({
   editMode,
@@ -27,19 +28,12 @@ export default function WorkItem({
         type='text'
         defaultValue={employer}
       />
-      <div className='c-responsibility'>
-        <label
-          htmlFor={`responsibility-${itemID}`}
-          className='c-responsibility__label'
-        >
-          Responsibilities
-        </label>
-        <textarea
-          id={`responsibility-${itemID}`}
-          className='c-responsibility__field'
-          rows='3'
-        ></textarea>
-      </div>
+      <TextArea
+        id={`responsibility-${itemID}`}
+        label='Responsibilities'
+        rows='3'
+        defaultValue={responsibilities}
+      />
       <DateRange
         dateID={itemID}
         startDate={startDate}

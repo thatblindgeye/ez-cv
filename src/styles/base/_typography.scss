@@ -35,20 +35,20 @@ body {
   }
 }
 
-.c-responsibility {
+.c-textarea {
   &__label {
     font-size: 0.95rem;
   }
 
   &__field {
+    font-family: $base-fonts;
     font-size: 1rem;
     letter-spacing: 0.08rem;
     line-height: 1.5;
   }
 }
 
-input[type='date'],
-textarea {
+input[type='date'] {
   font-family: $base-fonts;
 }
 

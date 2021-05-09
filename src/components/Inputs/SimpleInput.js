@@ -13,7 +13,7 @@ export default function SimpleInput(props) {
   const { id, label, type, defaultValue, disabled, required } = props;
 
   const requiredIndicator = required ? (
-    <span className='c-required-indicator' aria-hidden='true'>
+    <span className='c-required__indicator' aria-hidden='true'>
       *
     </span>
   ) : null;

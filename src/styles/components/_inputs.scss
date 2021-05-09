@@ -39,17 +39,14 @@
   }
 }
 
-.c-responsibility {
+.c-textarea {
   &__field {
     @extend %field-properties;
   }
-}
 
-.c-required-indicator {
-  position: relative;
-  top: 0.3rem;
-  margin-right: 0.3rem;
-  color: var(--color-form-required);
+  & + .c-input {
+    margin-top: 1.5rem;
+  }
 }
 
 input[aria-disabled='true'] {
