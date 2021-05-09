@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import PersonalFieldset from './PersonalFieldset';
+import PersonalPreview from './PersonalPreview';
 
 export default class PersonalSection extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: '',
-      summary: '',
-      phone: '',
-      email: '',
-      location: '',
-      linkedIn: '',
-      personalSite: '',
+      name: 'John Smith',
+      summary: 'A short summary about my qualifications.',
+      phone: '5555555555',
+      email: 'john@smith.com',
+      location: 'Nowhere, US',
+      linkedIn: 'www.linkedin.com/johnsmith',
+      personalSite: 'www.johnsmith.com',
     };
   }
 
@@ -39,7 +40,17 @@ export default class PersonalSection extends Component {
             linkedIn={linkedIn}
             personalSite={personalSite}
           />
-        ) : null}
+        ) : (
+          <PersonalPreview
+            name={name}
+            summary={summary}
+            phone={phone}
+            email={email}
+            location={location}
+            linkedIn={linkedIn}
+            personalSite={personalSite}
+          />
+        )}
       </>
     );
   }
