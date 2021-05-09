@@ -15,7 +15,7 @@ export default function WorkItem({
   employed,
 }) {
   const itemEdit = (
-    <div className='work__item--edit'>
+    <>
       <SimpleInput
         id={`position-${itemID}`}
         label='Position or Title'
@@ -44,15 +44,17 @@ export default function WorkItem({
       <button type='button' value='delete'>
         Delete
       </button>
-    </div>
+    </>
   );
 
   const itemPreview = (
-    <div className='item__container'>
-      <div className='item__main-heading'>{position}</div>
-      <div className='item__secondary-heading'>{employer}</div>
-      <div className='item__additional-details'>{responsibilities}</div>
-      <div className='item__date-range'>
+    <div className='c-item-preview'>
+      <div className='c-item-preview__main-heading'>{position}</div>
+      <div className='c-item-preview__secondary-heading'>{employer}</div>
+      <div className='c-item-preview__additional-details'>
+        {responsibilities}
+      </div>
+      <div className='c-item-preview__date-range'>
         <span>{startDate ? formatDate(startDate) : ''} to </span>
         <span>
           {employed

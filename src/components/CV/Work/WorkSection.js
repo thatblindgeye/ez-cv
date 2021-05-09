@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import WorkItem from './WorkItem';
+// import WorkItem from './WorkItem';
+import WorkFieldset from './WorkFieldset';
+import WorkPreview from './WorkPreview';
 
 export default class WorkSection extends Component {
   constructor(props) {
@@ -33,42 +35,17 @@ export default class WorkSection extends Component {
   }
 
   render() {
+    const { workList } = this.state;
+    const { editMode } = this.props;
+
     return (
-      <fieldset className='work'>
-        <legend>
-          <h2>Work Experience</h2>
-        </legend>
-        <ul role='list'>
-          {this.state.workList.map((item) => {
-            const {
-              id,
-              position,
-              employer,
-              startDate,
-              endDate,
-              responsibilities,
-              currentlyEmployed,
-            } = item;
-            return (
-              <li key={id}>
-                <WorkItem
-                  editMode={this.props.editMode}
-                  itemID={id}
-                  position={position}
-                  employer={employer}
-                  startDate={startDate}
-                  endDate={endDate}
-                  responsibilities={responsibilities}
-                  employed={currentlyEmployed}
-                />
-              </li>
-            );
-          })}
-        </ul>
-        <button type='button' value='add'>
-          Add Work
-        </button>
-      </fieldset>
+      <>
+        {editMode ? (
+          <WorkFieldset workList={workList} editMode={editMode} />
+        ) : (
+          <WorkPreview workList={workList} editMode={editMode} />
+        )}
+      </>
     );
   }
 }
