@@ -1,80 +1,9 @@
-@use '../abstracts/variables' as *;
+@use '../abstracts' as *;
 
-.c-checkbox {
-  --base-size: 1rem;
-  --large: 1.25;
-  --x-large: 1.5;
-  --xx-large: 1.75;
-
-  display: flex;
-  align-items: center;
-  width: max-content;
-  user-select: none;
-
-  &__field {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--color-border-input);
-    border-radius: 5px;
-
-    // Size modifiers for checkbox field
-    &--base {
-      @extend .c-checkbox__field;
-      height: var(--base-size);
-      width: var(--base-size);
-    }
-
-    &--large {
-      @extend .c-checkbox__field;
-      height: calc(var(--base-size) * var(--large));
-      width: calc(var(--base-size) * var(--large));
-    }
-
-    &--x-large {
-      @extend .c-checkbox__field;
-      height: calc(var(--base-size) * var(--x-large));
-      width: calc(var(--base-size) * var(--x-large));
-    }
-
-    &--xx-large {
-      @extend .c-checkbox__field;
-      height: calc(var(--base-size) * var(--xx-large));
-      width: calc(var(--base-size) * var(--xx-large));
-    }
-  }
-
-  &__icon {
-    display: none;
-    height: 100%;
-    width: 100%;
-  }
-
-  &:focus-within .c-checkbox__field {
-    background-color: var(--color-bg-checkbox-hover);
-    outline: 2px solid var(--color-outline-focus-primary);
-    outline-offset: 2px;
-  }
-
-  &:hover .c-checkbox__field {
-    background-color: var(--color-bg-checkbox-hover);
-  }
-
-  &__hidden {
-    opacity: 0;
-
-    &:checked ~ .c-checkbox__field {
-      background-color: inherit;
-
-      & .c-checkbox__icon {
-        display: block;
-      }
-    }
-  }
-}
-
-%inputs {
-  padding: 6px;
+%field-properties {
+  display: block;
+  width: min(100%, 400px);
+  padding: 0.4rem;
   background-color: var(--color-bg-input);
   color: var(--text-primary);
   border: 2px solid var(--color-border-input);
@@ -85,45 +14,40 @@
 }
 
 .c-input {
-  max-width: 20rem;
-  width: 100%;
-
-  &__label {
-    display: flex;
-    align-items: center;
-  }
+  margin-bottom: 1.5rem;
 
   &__field {
-    @extend %inputs;
-    width: 100%;
+    @extend %field-properties;
   }
 }
 
 .c-date-range {
-  display: flex;
-  flex-direction: column;
-  max-width: 11rem;
-  width: 100%;
-
+  margin: 1.5rem 0;
   &__container {
-    display: flex;
-    flex-direction: column;
+    width: min(10rem, 300px);
+    margin: 1.5rem 0;
   }
 
   &__field {
-    @extend %inputs;
-    margin-bottom: 10px;
+    @extend %field-properties;
     transition: opacity 200ms linear;
 
     &::-webkit-calendar-picker-indicator {
+      margin-left: 0;
       filter: var(--color-date-input-icon);
     }
   }
 }
 
-.required-indicator {
+.c-responsibility {
+  &__field {
+    @extend %field-properties;
+  }
+}
+
+.c-required-indicator {
   position: relative;
-  top: 0.2rem;
+  top: 0.3rem;
   margin-right: 0.3rem;
   color: var(--color-form-required);
 }

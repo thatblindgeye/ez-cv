@@ -36,13 +36,13 @@ export default function DateRange(props) {
             preventDisabledInteraction(e, current);
           }}
         />
-        <Checkbox
-          id={`${currentType}-${dateID}`}
-          label={`Currently ${currentType}`}
-          containerClass='l-flex-row-reverse'
-          fieldClass='c-date-range__checkbox c-checkbox__field--x-large'
-        />
       </div>
+      <Checkbox
+        id={`${currentType}-${dateID}`}
+        label={`Currently ${currentType}`}
+        containerClass='l-flex-row-reverse'
+        fieldClass='c-date-range__checkbox c-checkbox__field--x-large'
+      />
     </div>
   );
 }

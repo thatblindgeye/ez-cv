@@ -1,9 +1,8 @@
-$base-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
+@use '../abstracts' as *;
 
 body {
-  font-family: $base-family;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: $base-fonts;
+  letter-spacing: 0.08rem;
 }
 
 .c-app-logo {
@@ -16,30 +15,45 @@ body {
 
 .c-input {
   &__label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   &__field {
-    font-size: 1rem;
+    font-family: $base-fonts;
+    font-size: 1.1rem;
+    letter-spacing: 0.08rem;
   }
 }
 
 .c-date-range {
   &__label {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  &__field {
+    font-size: 1.125rem;
+  }
+}
+
+.c-responsibility {
+  &__label {
+    font-size: 0.95rem;
   }
 
   &__field {
     font-size: 1rem;
+    letter-spacing: 0.08rem;
+    line-height: 1.5;
   }
 }
 
-.required-indicator {
+input[type='date'],
+textarea {
+  font-family: $base-fonts;
+}
+
+.c-required-indicator {
   font-size: 1.25rem;
   font-weight: bold;
   line-height: 1rem;
-}
-
-input[type='date'] {
-  font-family: $base-family;
 }

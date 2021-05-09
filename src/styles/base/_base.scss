@@ -15,10 +15,6 @@ body {
   color: var(--color-text-primary);
 }
 
-main {
-  padding: 25px 0 100px;
-}
-
 /**
   * Removes default focus styles for elements 
   * (MANUALLY ADD FOCUS STYLES LATER)
@@ -29,6 +25,10 @@ main {
   }
 }
 
+main {
+  padding: 25px 10px 100px;
+}
+
 h1,
 h2,
 h3,
@@ -36,6 +36,11 @@ h4,
 h5,
 h6 {
   margin: 0;
+}
+
+fieldset {
+  padding: 0;
+  border: none;
 }
 
 %clickable {
