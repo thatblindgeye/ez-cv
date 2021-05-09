@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import EducationItem from './EducationItem';
+import EducationFieldset from './EducationFieldset';
+import EducationPreview from './EducationPreview';
 
 export default class EducationSection extends Component {
   constructor(props) {
@@ -38,40 +39,20 @@ export default class EducationSection extends Component {
   }
 
   render() {
+    const { educationList } = this.state;
+    const { editMode } = this.props;
+
     return (
-      <fieldset className='education'>
-        <legend>
-          <h2>Education</h2>
-        </legend>
-        <ul role='list'>
-          {this.state.educationList.map((item) => {
-            const {
-              id,
-              degree,
-              school,
-              startDate,
-              endDate,
-              currentlyEnrolled,
-            } = item;
-            return (
-              <li key={id}>
-                <EducationItem
-                  editMode={this.props.editMode}
-                  itemID={id}
-                  degree={degree}
-                  school={school}
-                  startDate={startDate}
-                  endDate={endDate}
-                  enrolled={currentlyEnrolled}
-                />
-              </li>
-            );
-          })}
-        </ul>
-        <button type='button' value='add'>
-          Add Education
-        </button>
-      </fieldset>
+      <>
+        {editMode ? (
+          <EducationFieldset
+            educationList={educationList}
+            editMode={editMode}
+          />
+        ) : (
+          <EducationPreview educationList={educationList} editMode={editMode} />
+        )}
+      </>
     );
   }
 }

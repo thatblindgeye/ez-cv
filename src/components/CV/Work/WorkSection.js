@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-// import WorkItem from './WorkItem';
 import WorkFieldset from './WorkFieldset';
 import WorkPreview from './WorkPreview';
 
