@@ -30,7 +30,7 @@ export default class EducationSection extends Component {
           degree: 'AS Math',
           school: 'Real University',
           startDate: '2018-05-01',
-          endDate: 'present',
+          endDate: '',
           currentlyEnrolled: true,
         },
       ],

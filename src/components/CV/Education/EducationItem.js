@@ -30,7 +30,8 @@ export default function EducationItem({
         dateID={itemID}
         startDate={startDate}
         endDate={endDate}
-        enrolled={enrolled}
+        current={enrolled}
+        currentType='enrolled'
       />
       <button type='button' value='delete'>
         Delete
@@ -39,13 +40,13 @@ export default function EducationItem({
   );
 
   const itemPreview = (
-    <div className='education__item--preview'>
-      <div>{degree}</div>
-      <div>{school}</div>
-      <div>
-        <span>{formatDate(startDate)}</span>-
+    <div className='item__container'>
+      <div className='item__main-heading'>{degree}</div>
+      <div className='item__secondary-heading'>{school}</div>
+      <div className='item__date-range'>
+        <span>{formatDate(startDate)} to </span>
         <span>
-          {enrolled ? endDate : endDate === '' ? '' : formatDate(endDate)}
+          {enrolled ? 'present' : endDate === '' ? '' : formatDate(endDate)}
         </span>
       </div>
     </div>
