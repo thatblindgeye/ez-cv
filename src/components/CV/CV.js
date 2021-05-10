@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
+import PersonalSection from './Personal/PersonalSection';
+import WorkSection from './Work/WorkSection';
 import EducationSection from './Education/EducationSection';
 
 export default class CV extends Component {
   constructor(props) {
     super(props);
-    this.state = { editMode: false };
+    this.state = { editMode: true };
   }
 
   render() {
-    return (
+    const { editMode } = this.state;
+    const childItems = (
+      <>
+        <PersonalSection editMode={editMode} />
+        <WorkSection editMode={editMode} />
+        <EducationSection editMode={editMode} />
+      </>
+    );
+
+    const form = (
       <form autoComplete='off' noValidate>
-        <EducationSection editMode={this.state.editMode} />
+        {childItems}
       </form>
     );
+
+    const preview = <div className='c-cv-preview'>{childItems}</div>;
+
+    return <>{editMode ? form : preview}</>;
   }
 }
