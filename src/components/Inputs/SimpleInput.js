@@ -10,7 +10,16 @@ import React from 'react';
  */
 
 export default function SimpleInput(props) {
-  const { id, label, type, defaultValue, disabled, required } = props;
+  const {
+    id,
+    label,
+    type,
+    fieldName,
+    defaultValue,
+    disabled,
+    required,
+    changeEvent,
+  } = props;
 
   const requiredIndicator = required ? (
     <span className='c-required__indicator' aria-hidden='true'>
@@ -28,10 +37,12 @@ export default function SimpleInput(props) {
         type={type}
         id={id}
         className='c-input__field'
+        name={fieldName}
         defaultValue={defaultValue}
         disabled={disabled}
         required={required}
         aria-required={required}
+        onChange={changeEvent}
       />
     </div>
   );

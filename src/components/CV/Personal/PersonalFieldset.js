@@ -10,6 +10,7 @@ export default function PersonalFieldset({
   location,
   linkedIn,
   personalSite,
+  changeEvent,
 }) {
   return (
     <fieldset id='personal-fieldset'>
@@ -21,49 +22,63 @@ export default function PersonalFieldset({
         indicates a required field.
       </small>
       <SimpleInput
-        id='name'
-        label='Name'
         type='text'
+        label='Name'
+        id='name'
+        fieldName='name'
         defaultValue={name}
         required
+        changeEvent={changeEvent}
       />
       <TextArea
-        id='summary'
         label='Personal summary'
+        id='summary'
+        fieldName='summary'
         rows='3'
         defaultValue={summary}
+        changeEvent={changeEvent}
       />
       <SimpleInput
-        id='phone'
-        label='Phone'
         type='tel'
+        label='Phone'
+        id='phone'
+        fieldName='phone'
         defaultValue={phone}
         required
+        changeEvent={changeEvent}
       />
       <SimpleInput
-        id='email'
-        label='Email'
         type='email'
+        label='Email'
+        id='email'
+        fieldName='email'
         defaultValue={email}
         required
+        changeEvent={changeEvent}
       />
       <SimpleInput
-        id='location'
-        label='Location'
         type='text'
+        label='Location'
+        id='location'
+        fieldName='location'
         defaultValue={location}
+        changeEvent={changeEvent}
       />
       <SimpleInput
-        id='linkedin'
+        type='url'
         label='LinkedIn'
-        type='url'
+        id='linkedin'
+        fieldName='linkedIn'
         defaultValue={linkedIn}
+        changeEvent={changeEvent}
       />
       <SimpleInput
-        id='personal-site'
-        label='Website'
         type='url'
+        label='Website'
+        id='personal-site'
+        fieldName='personalSite'
         defaultValue={personalSite}
+        changeEvent={changeEvent}
       />
     </fieldset>
   );

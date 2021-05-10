@@ -7,26 +7,27 @@ export default class PersonalSection extends Component {
     super(props);
 
     this.state = {
-      name: 'John Smith',
-      summary: 'A short summary about my qualifications.',
-      phone: '5555555555',
-      email: 'john@smith.com',
-      location: 'Nowhere, US',
-      linkedIn: 'www.linkedin.com/johnsmith',
-      personalSite: 'www.johnsmith.com',
+      name: '',
+      summary: '',
+      phone: '',
+      email: '',
+      location: '',
+      linkedIn: '',
+      personalSite: '',
     };
   }
 
+  handlePersonalChange = (e) => {
+    const name = e.target.name;
+
+    this.setState({
+      [name]: e.target.value,
+    });
+  };
+
   render() {
-    const {
-      name,
-      summary,
-      phone,
-      email,
-      location,
-      linkedIn,
-      personalSite,
-    } = this.state;
+    const { name, summary, phone, email, location, linkedIn, personalSite } =
+      this.state;
 
     return (
       <>
@@ -39,6 +40,7 @@ export default class PersonalSection extends Component {
             location={location}
             linkedIn={linkedIn}
             personalSite={personalSite}
+            changeEvent={this.handlePersonalChange}
           />
         ) : (
           <PersonalPreview
