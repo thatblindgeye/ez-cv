@@ -1,0 +1,38 @@
+@use '../abstracts/mixins' as *;
+
+form {
+  margin: auto;
+
+  @include breakpoint-at-least(medium) {
+    max-width: 600px;
+    width: 75%;
+  }
+}
+
+fieldset {
+  padding: 0;
+  border: none;
+
+  & + fieldset {
+    margin-top: 50px;
+  }
+}
+
+legend {
+  width: 100%;
+  border-bottom: 2px solid var(--color-border-primary);
+}
+
+.c-required {
+  &__notice {
+    display: block;
+    margin: 10px 0 50px;
+  }
+
+  &__indicator {
+    position: relative;
+    top: 0.2rem;
+    margin-right: 0.3rem;
+    color: var(--color-form-required);
+  }
+}
