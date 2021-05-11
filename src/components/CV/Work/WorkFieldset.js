@@ -3,7 +3,7 @@ import React from 'react';
 import WorkItem from './WorkItem';
 
 export default function WorkFieldset(props) {
-  const { addButtonEvent, changeEvent, workList } = props;
+  const { addButtonEvent, changeEvent, deleteButtonEvent, workList } = props;
 
   return (
     <fieldset id='work-fieldset'>
@@ -33,6 +33,7 @@ export default function WorkFieldset(props) {
                 responsibilities={responsibilities}
                 employed={currentlyEmployed}
                 changeEvent={changeEvent}
+                deleteButtonEvent={deleteButtonEvent}
               />
             </li>
           );

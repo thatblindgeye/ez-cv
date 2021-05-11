@@ -9,27 +9,7 @@ export default class WorkSection extends Component {
     super(props);
 
     this.state = {
-      workList: [
-        // {
-        //   id: 2,
-        //   position: 'TPS Auditor',
-        //   employer: 'Awfiss Space',
-        //   startDate: '2019-10-15',
-        //   endDate: '2020-11-01',
-        //   responsibilities:
-        //     'Ensuring all TPS reports were filled out correctly.',
-        //   currentlyEmployed: false,
-        // },
-        // {
-        //   id: 77,
-        //   position: 'A position',
-        //   employer: 'Ink, inc.',
-        //   startDate: '2016-02-22',
-        //   endDate: '',
-        //   responsibilities: 'Some stuff.',
-        //   currentlyEmployed: false,
-        // },
-      ],
+      workList: [],
     };
   }
 
@@ -51,7 +31,7 @@ export default class WorkSection extends Component {
     });
   };
 
-  handleWorkChange = (e) => {
+  handleUpdateWork = (e) => {
     const currentItem = e.target.closest('li');
     const name = e.target.name;
     const value =
@@ -63,6 +43,18 @@ export default class WorkSection extends Component {
       }
       return item;
     });
+
+    this.setState({
+      workList: workListCopy,
+    });
+  };
+
+  handleDeleteWork = (e) => {
+    const currentItem = e.target.closest('li');
+
+    const workListCopy = this.state.workList.filter(
+      (item) => item.id !== currentItem.id
+    );
 
     this.setState({
       workList: workListCopy,
@@ -81,6 +73,7 @@ export default class WorkSection extends Component {
             editMode={editMode}
             addButtonEvent={this.handleAddWork}
             changeEvent={this.handleWorkChange}
+            deleteButtonEvent={this.handleWorkDelete}
           />
         ) : (
           <WorkPreview workList={workList} editMode={editMode} />

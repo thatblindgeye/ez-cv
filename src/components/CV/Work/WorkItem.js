@@ -15,6 +15,7 @@ export default function WorkItem(props) {
     responsibilities,
     employed,
     changeEvent,
+    deleteButtonEvent,
   } = props;
 
   const itemEdit = (
@@ -52,7 +53,7 @@ export default function WorkItem(props) {
         checkboxName='currentlyEmployed'
         changeEvent={changeEvent}
       />
-      <button type='button' value='delete'>
+      <button type='button' value='delete' onClick={deleteButtonEvent}>
         Delete
       </button>
     </>
