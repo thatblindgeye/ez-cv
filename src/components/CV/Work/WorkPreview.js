@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React from 'react';
-import WorkItem from './WorkItem';
+import formatDate from '../../../scripts/date-formatter';
 
 export default function WorkPreview(props) {
   return (
@@ -19,16 +19,23 @@ export default function WorkPreview(props) {
           } = item;
           return (
             <li key={id}>
-              <WorkItem
-                editMode={props.editMode}
-                itemID={id}
-                position={position}
-                employer={employer}
-                startDate={startDate}
-                endDate={endDate}
-                responsibilities={responsibilities}
-                employed={currentlyEmployed}
-              />
+              <div className='c-item'>
+                <div className='c-item__main-heading'>{position}</div>
+                <div className='c-item__secondary-heading'>{employer}</div>
+                <div className='c-item__additional-details'>
+                  {responsibilities}
+                </div>
+                <div className='c-item__date-range'>
+                  <span>{startDate ? formatDate(startDate) : ''} to </span>
+                  <span>
+                    {currentlyEmployed
+                      ? 'present'
+                      : endDate === ''
+                      ? 'unknown'
+                      : formatDate(endDate)}
+                  </span>
+                </div>
+              </div>
             </li>
           );
         })}

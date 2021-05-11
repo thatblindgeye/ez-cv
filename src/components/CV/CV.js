@@ -1,14 +1,36 @@
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
-import PersonalSection from './Personal/PersonalSection';
-import WorkSection from './Work/WorkSection';
-import EducationSection from './Education/EducationSection';
+import PersonalFieldset from './Personal/PersonalFieldset';
+import PersonalPreview from './Personal/PersonalPreview';
+import WorkFieldset from './Work/WorkFieldset';
+import WorkPreview from './Work/WorkPreview';
+import EducationFieldset from './Education/EducationFieldset';
+import EducationPreview from './Education/EducationPreview';
 
 export default class CV extends Component {
   constructor(props) {
     super(props);
-    this.state = { editMode: true, workList: [], educationList: [] };
+    this.state = {
+      editMode: true,
+      name: '',
+      summary: '',
+      phone: '',
+      email: '',
+      location: '',
+      linkedIn: '',
+      personalSite: '',
+      workList: [],
+      educationList: [],
+    };
   }
+
+  handleUpdatePersonal = (e) => {
+    const name = e.target.name;
+
+    this.setState({
+      [name]: e.target.value,
+    });
+  };
 
   handleAddWork = () => {
     const newWork = {
@@ -25,6 +47,23 @@ export default class CV extends Component {
 
     this.setState({
       workList: updatedWorkList,
+    });
+  };
+
+  handleAddEducation = () => {
+    const newEducation = {
+      id: nanoid(),
+      degree: '',
+      school: '',
+      startDate: '',
+      endDate: '',
+      currentlyEnrolled: false,
+    };
+
+    const updatedEducationList = [...this.state.educationList, newEducation];
+
+    this.setState({
+      educationList: updatedEducationList,
     });
   };
 
@@ -57,33 +96,70 @@ export default class CV extends Component {
   };
 
   render() {
-    const { editMode, workList } = this.state;
-    const childItems = (
-      <>
-        <PersonalSection editMode={editMode} />
-        <WorkSection
-          editMode={editMode}
+    const {
+      editMode,
+      name,
+      summary,
+      phone,
+      email,
+      location,
+      linkedIn,
+      personalSite,
+      workList,
+      educationList,
+    } = this.state;
+
+    const cvEdit = (
+      <form autoComplete='off' noValidate>
+        <PersonalFieldset
+          name={name}
+          summary={summary}
+          phone={phone}
+          email={email}
+          location={location}
+          linkedIn={linkedIn}
+          personalSite={personalSite}
+          changeEvent={this.handleUpdatePersonal}
+        />
+        <WorkFieldset
           workList={workList}
-          addButtonEvent={this.handleAddWork}
+          addItemEvent={this.handleAddWork}
           changeEvent={(e) => {
             this.handleUpdateList(e, 'workList');
           }}
-          deleteButtonEvent={(e) => {
+          deleteItemEvent={(e) => {
             this.handleDeleteItem(e, 'workList');
           }}
         />
-        <EducationSection editMode={editMode} />
-      </>
-    );
-
-    const form = (
-      <form autoComplete='off' noValidate>
-        {childItems}
+        <EducationFieldset
+          educationList={educationList}
+          addItemEvent={this.handleAddEducation}
+          changeEvent={(e) => {
+            this.handleUpdateList(e, 'educationList');
+          }}
+          deleteItemEvent={(e) => {
+            this.handleDeleteItem(e, 'educationList');
+          }}
+        />
       </form>
     );
 
-    const preview = <div className='c-cv-preview'>{childItems}</div>;
+    const cvPreview = (
+      <div className='c-cv-preview'>
+        <PersonalPreview
+          name={name}
+          summary={summary}
+          phone={phone}
+          email={email}
+          location={location}
+          linkedIn={linkedIn}
+          personalSite={personalSite}
+        />
+        <WorkPreview workList={workList} />
+        <EducationPreview educationList={educationList} />
+      </div>
+    );
 
-    return <>{editMode ? form : preview}</>;
+    return <>{editMode ? cvEdit : cvPreview}</>;
   }
 }

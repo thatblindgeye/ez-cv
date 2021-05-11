@@ -13,9 +13,9 @@ export default function PersonalFieldset({
   changeEvent,
 }) {
   return (
-    <fieldset id='personal-fieldset'>
+    <fieldset className='c-fieldset c-fieldset__personal'>
       <legend>
-        <h2>Personal Info</h2>
+        <h2 className='c-fieldset__legend'>Personal Info</h2>
       </legend>
       <small className='c-required__notice'>
         <span className='c-required__indicator'>*</span>
