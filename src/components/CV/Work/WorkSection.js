@@ -13,9 +13,9 @@ export default class WorkSection extends Component {
         id: '',
         position: '',
         employer: '',
+        responsibilities: '',
         startDate: '',
         endDate: '',
-        responsibilities: '',
         currentlyEmployed: false,
       },
       workList: [
@@ -24,14 +24,46 @@ export default class WorkSection extends Component {
           position: 'TPS Auditor',
           employer: 'Awfiss Space',
           startDate: '2019-10-15',
-          endDate: '',
+          endDate: '2020-11-01',
           responsibilities:
             'Ensuring all TPS reports were filled out correctly.',
+          currentlyEmployed: false,
+        },
+        {
+          id: 77,
+          position: 'A position',
+          employer: 'Ink, inc.',
+          startDate: '2016-02-22',
+          endDate: '',
+          responsibilities: 'Some stuff.',
           currentlyEmployed: false,
         },
       ],
     };
   }
+
+  handleWorkChange = (e) => {
+    const currentItem = e.target.closest('li');
+    const name = e.target.name;
+    const value =
+      e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+
+    const workListCopy = this.state.workList.map((item) => {
+      if (item.id === Number(currentItem.id)) {
+        item[name] = value;
+      }
+      return item;
+    });
+
+    this.setState(
+      {
+        workList: workListCopy,
+      },
+      () => {
+        console.log('main: ', this.state.workList);
+      }
+    );
+  };
 
   render() {
     const { workList } = this.state;
@@ -40,7 +72,11 @@ export default class WorkSection extends Component {
     return (
       <>
         {editMode ? (
-          <WorkFieldset workList={workList} editMode={editMode} />
+          <WorkFieldset
+            workList={workList}
+            editMode={editMode}
+            changeEvent={this.handleWorkChange}
+          />
         ) : (
           <WorkPreview workList={workList} editMode={editMode} />
         )}

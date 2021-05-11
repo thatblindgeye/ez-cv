@@ -4,35 +4,44 @@ import SimpleInput from '../../Inputs/SimpleInput';
 import DateRange from '../../Inputs/DateRange';
 import TextArea from '../../Inputs/TextArea';
 
-export default function WorkItem({
-  editMode,
-  itemID,
-  position,
-  employer,
-  startDate,
-  endDate,
-  responsibilities,
-  employed,
-}) {
+export default function WorkItem(props) {
+  const {
+    editMode,
+    itemID,
+    position,
+    employer,
+    startDate,
+    endDate,
+    responsibilities,
+    employed,
+    changeEvent,
+  } = props;
+
   const itemEdit = (
     <>
       <SimpleInput
         id={`position-${itemID}`}
+        fieldName='position'
         label='Position or Title'
         type='text'
         defaultValue={position}
+        changeEvent={changeEvent}
       />
       <SimpleInput
         id={`employer-${itemID}`}
+        fieldName='employer'
         label='Employer'
         type='text'
         defaultValue={employer}
+        changeEvent={changeEvent}
       />
       <TextArea
         id={`responsibility-${itemID}`}
+        fieldName='responsibilities'
         label='Responsibilities'
         rows='3'
         defaultValue={responsibilities}
+        changeEvent={changeEvent}
       />
       <DateRange
         dateID={itemID}
@@ -40,6 +49,8 @@ export default function WorkItem({
         endDate={endDate}
         current={employed}
         currentType='employed'
+        checkboxName='currentlyEmployed'
+        changeEvent={changeEvent}
       />
       <button type='button' value='delete'>
         Delete

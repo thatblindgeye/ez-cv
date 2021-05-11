@@ -3,7 +3,15 @@ import preventDisabledInteraction from '../../scripts/disabled-interaction';
 import Checkbox from './Checkbox';
 
 export default function DateRange(props) {
-  const { dateID, startDate, endDate, current, currentType } = props;
+  const {
+    dateID,
+    startDate,
+    endDate,
+    current,
+    currentType,
+    checkboxName,
+    changeEvent,
+  } = props;
 
   return (
     <div className='c-date-range'>
@@ -15,7 +23,9 @@ export default function DateRange(props) {
           type='date'
           id={`start-date-${dateID}`}
           className='c-date-range__field'
+          name='startDate'
           defaultValue={startDate}
+          onChange={changeEvent}
         />
       </div>
 
@@ -27,6 +37,7 @@ export default function DateRange(props) {
           type='date'
           id={`end-date-${dateID}`}
           className='c-date-range__field'
+          name='endDate'
           defaultValue={endDate}
           aria-disabled={current ? true : false}
           onClick={(e) => {
@@ -35,6 +46,7 @@ export default function DateRange(props) {
           onKeyDown={(e) => {
             preventDisabledInteraction(e, current);
           }}
+          onChange={changeEvent}
         />
       </div>
       <Checkbox
@@ -42,6 +54,9 @@ export default function DateRange(props) {
         label={`Currently ${currentType}`}
         containerClass='l-flex-row-reverse'
         fieldClass='c-date-range__checkbox c-checkbox__field--x-large'
+        checkboxName={checkboxName}
+        checked={current}
+        changeEvent={changeEvent}
       />
     </div>
   );
