@@ -3,13 +3,15 @@ import React from 'react';
 import WorkItem from './WorkItem';
 
 export default function WorkFieldset(props) {
+  const { addButtonEvent, changeEvent, workList } = props;
+
   return (
     <fieldset id='work-fieldset'>
       <legend>
         <h2>Work Experience</h2>
       </legend>
       <ul role='list' aria-label='work experience'>
-        {props.workList.map((item) => {
+        {workList.map((item) => {
           const {
             id,
             position,
@@ -20,7 +22,7 @@ export default function WorkFieldset(props) {
             currentlyEmployed,
           } = item;
           return (
-            <li key={id}>
+            <li key={id} id={id}>
               <WorkItem
                 editMode={props.editMode}
                 itemID={id}
@@ -30,12 +32,13 @@ export default function WorkFieldset(props) {
                 endDate={endDate}
                 responsibilities={responsibilities}
                 employed={currentlyEmployed}
+                changeEvent={changeEvent}
               />
             </li>
           );
         })}
       </ul>
-      <button type='button' value='add'>
+      <button type='button' value='add' onClick={addButtonEvent}>
         Add Work
       </button>
     </fieldset>

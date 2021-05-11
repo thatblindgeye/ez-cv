@@ -9,38 +9,47 @@ export default class WorkSection extends Component {
     super(props);
 
     this.state = {
-      newWork: {
-        id: '',
-        position: '',
-        employer: '',
-        responsibilities: '',
-        startDate: '',
-        endDate: '',
-        currentlyEmployed: false,
-      },
       workList: [
-        {
-          id: 2,
-          position: 'TPS Auditor',
-          employer: 'Awfiss Space',
-          startDate: '2019-10-15',
-          endDate: '2020-11-01',
-          responsibilities:
-            'Ensuring all TPS reports were filled out correctly.',
-          currentlyEmployed: false,
-        },
-        {
-          id: 77,
-          position: 'A position',
-          employer: 'Ink, inc.',
-          startDate: '2016-02-22',
-          endDate: '',
-          responsibilities: 'Some stuff.',
-          currentlyEmployed: false,
-        },
+        // {
+        //   id: 2,
+        //   position: 'TPS Auditor',
+        //   employer: 'Awfiss Space',
+        //   startDate: '2019-10-15',
+        //   endDate: '2020-11-01',
+        //   responsibilities:
+        //     'Ensuring all TPS reports were filled out correctly.',
+        //   currentlyEmployed: false,
+        // },
+        // {
+        //   id: 77,
+        //   position: 'A position',
+        //   employer: 'Ink, inc.',
+        //   startDate: '2016-02-22',
+        //   endDate: '',
+        //   responsibilities: 'Some stuff.',
+        //   currentlyEmployed: false,
+        // },
       ],
     };
   }
+
+  handleAddWork = () => {
+    const newWork = {
+      id: nanoid(),
+      position: '',
+      employer: '',
+      responsibilities: '',
+      startDate: '',
+      endDate: '',
+      currentlyEmployed: false,
+    };
+
+    const updatedWorkList = [...this.state.workList, newWork];
+
+    this.setState({
+      workList: updatedWorkList,
+    });
+  };
 
   handleWorkChange = (e) => {
     const currentItem = e.target.closest('li');
@@ -49,20 +58,15 @@ export default class WorkSection extends Component {
       e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
     const workListCopy = this.state.workList.map((item) => {
-      if (item.id === Number(currentItem.id)) {
+      if (item.id === currentItem.id) {
         item[name] = value;
       }
       return item;
     });
 
-    this.setState(
-      {
-        workList: workListCopy,
-      },
-      () => {
-        console.log('main: ', this.state.workList);
-      }
-    );
+    this.setState({
+      workList: workListCopy,
+    });
   };
 
   render() {
@@ -75,6 +79,7 @@ export default class WorkSection extends Component {
           <WorkFieldset
             workList={workList}
             editMode={editMode}
+            addButtonEvent={this.handleAddWork}
             changeEvent={this.handleWorkChange}
           />
         ) : (
