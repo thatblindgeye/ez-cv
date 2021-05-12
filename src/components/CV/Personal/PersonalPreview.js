@@ -1,4 +1,8 @@
 import React from 'react';
+import { ReactComponent as PhoneIcon } from '../../../assets/images/icons/phone.svg';
+import { ReactComponent as EmailIcon } from '../../../assets/images/icons/email.svg';
+import { ReactComponent as LocationIcon } from '../../../assets/images/icons/location.svg';
+import { ReactComponent as SiteIcon } from '../../../assets/images/icons/link.svg';
 
 export default function PersonalPreview({
   name,
@@ -16,26 +20,61 @@ export default function PersonalPreview({
         <div className='c-personal-main__summary'>{summary}</div>
       </div>
       <div className='c-personal-contact'>
-        <div className='c-personal-contact__phone'>
-          <span className='c-personal-contact__icon'></span>
-          {phone}
-        </div>
-        <div className='c-personal-contact__email'>
-          <span className='c-personal-contact__icon'></span>
-          {email}
-        </div>
-        <div className='c-personal-contact__location'>
-          <span className='c-personal-contact__icon'></span>
-          {location}
-        </div>
-        <div className='c-personal-contact__linkedIn'>
-          <span className='c-personal-contact__icon'></span>
-          {linkedIn}
-        </div>
-        <div className='c-personal-contact__personalite'>
-          <span className='c-personal-contact__icon'></span>
-          {personalSite}
-        </div>
+        {phone.trim() !== '' ? (
+          <div className='c-personal-contact__phone'>
+            <span>
+              <PhoneIcon
+                className='c-personal-contact__icon'
+                aria-hidden='true'
+              />
+            </span>
+            {phone}
+          </div>
+        ) : null}
+        {email.trim() !== '' ? (
+          <div className='c-personal-contact__email'>
+            <span>
+              <EmailIcon
+                className='c-personal-contact__icon'
+                aria-hidden='true'
+              />
+            </span>
+            {email}
+          </div>
+        ) : null}
+        {location.trim() !== '' ? (
+          <div className='c-personal-contact__location'>
+            <span>
+              <LocationIcon
+                className='c-personal-contact__icon'
+                aria-hidden='true'
+              />
+            </span>
+            {location}
+          </div>
+        ) : null}
+        {linkedIn.trim() !== '' ? (
+          <div className='c-personal-contact__site'>
+            <span>
+              <SiteIcon
+                className='c-personal-contact__icon'
+                aria-hidden='true'
+              />
+            </span>
+            {linkedIn}
+          </div>
+        ) : null}
+        {personalSite.trim() !== '' ? (
+          <div className='c-personal-contact__site'>
+            <span>
+              <SiteIcon
+                className='c-personal-contact__icon'
+                aria-hidden='true'
+              />
+            </span>
+            {personalSite}
+          </div>
+        ) : null}
       </div>
     </div>
   );

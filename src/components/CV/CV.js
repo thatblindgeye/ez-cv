@@ -175,7 +175,7 @@ export default class CV extends Component {
             value='submit'
             onClick={this.handleToggleEditMode}
           >
-            Edit CV
+            Preview CV
           </button>
           <button
             type='reset'

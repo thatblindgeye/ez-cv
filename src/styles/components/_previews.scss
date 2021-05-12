@@ -1,3 +1,17 @@
+@use '../abstracts/variables' as *;
+
 .c-section-preview + .c-section-preview {
   margin-top: 3rem;
+}
+
+.c-personal-contact {
+  --base-size: 1.1rem;
+  font-size: var(--base-size);
+
+  &__icon {
+    height: var(--base-size);
+    width: var(--base-size);
+    margin-right: 0.75rem;
+    opacity: $low-emphasis;
+  }
 }
