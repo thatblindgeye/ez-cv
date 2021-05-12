@@ -15,7 +15,7 @@ export default function WorkFieldset({
       <legend>
         <h2 className='c-fieldset__legend'>Work Experience</h2>
       </legend>
-      <ul role='list' aria-label='work experience'>
+      <ul role='list' className='c-fieldset__list' aria-label='work experience'>
         {workList.map((item) => {
           const {
             id,
@@ -27,7 +27,7 @@ export default function WorkFieldset({
             currentlyEmployed,
           } = item;
           return (
-            <li key={id} id={id}>
+            <li key={id} id={id} className='c-fieldset__list-item'>
               <>
                 <SimpleInput
                   id={`position-${id}`}

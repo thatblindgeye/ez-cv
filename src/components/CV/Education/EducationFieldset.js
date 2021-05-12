@@ -14,12 +14,12 @@ export default function EducationFieldset({
       <legend>
         <h2 className='c-fieldset__legend'>Education</h2>
       </legend>
-      <ul role='list' aria-label='education'>
+      <ul role='list' className='c-fieldset__list' aria-label='education'>
         {educationList.map((item) => {
           const { id, degree, school, startDate, endDate, currentlyEnrolled } =
             item;
           return (
-            <li key={id} id={id}>
+            <li key={id} id={id} className='c-fieldset__list-item'>
               <SimpleInput
                 id={`degree-${id}`}
                 fieldName='degree'

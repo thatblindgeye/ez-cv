@@ -22,11 +22,10 @@ export default function WorkPreview(props) {
               <div className='c-item'>
                 <div className='c-item__main-heading'>{position}</div>
                 <div className='c-item__secondary-heading'>{employer}</div>
-                <div className='c-item__additional-details'>
-                  {responsibilities}
-                </div>
                 <div className='c-item__date-range'>
-                  <span>{startDate ? formatDate(startDate) : ''} to </span>
+                  <span>
+                    {startDate ? formatDate(startDate) : 'unknown'} to{' '}
+                  </span>
                   <span>
                     {currentlyEmployed
                       ? 'present'
@@ -34,6 +33,12 @@ export default function WorkPreview(props) {
                       ? 'unknown'
                       : formatDate(endDate)}
                   </span>
+                </div>
+                <div className='c-item__additional-details'>
+                  <div className='c-item__responsibilities'>
+                    Responsibilities
+                    <pre>{responsibilities}</pre>
+                  </div>
                 </div>
               </div>
             </li>

@@ -16,12 +16,14 @@ export default function EducationPreview(props) {
                 <div className='c-item__main-heading'>{degree}</div>
                 <div className='c-item__secondary-heading'>{school}</div>
                 <div className='c-item__date-range'>
-                  <span>{formatDate(startDate)} to </span>
+                  <span>
+                    {startDate ? formatDate(startDate) : 'unknown'} to{' '}
+                  </span>
                   <span>
                     {currentlyEnrolled
                       ? 'present'
                       : endDate === ''
-                      ? ''
+                      ? 'unknown'
                       : formatDate(endDate)}
                   </span>
                 </div>

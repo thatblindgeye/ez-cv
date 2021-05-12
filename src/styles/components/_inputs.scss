@@ -42,6 +42,7 @@
 .c-textarea {
   &__field {
     @extend %field-properties;
+    white-space: pre-line;
   }
 
   & + .c-input {

@@ -80,9 +80,14 @@ export default class CV extends Component {
       return item;
     });
 
-    this.setState({
-      [list]: listCopy,
-    });
+    this.setState(
+      {
+        [list]: listCopy,
+      },
+      () => {
+        console.log(this.state.workList);
+      }
+    );
   };
 
   handleDeleteItem = (e, list) => {
@@ -92,6 +97,28 @@ export default class CV extends Component {
     );
     this.setState({
       [list]: listCopy,
+    });
+  };
+
+  handleToggleEditMode = (e) => {
+    e.preventDefault();
+    this.setState({
+      editMode: !this.state.editMode,
+    });
+  };
+
+  handleResetCV = () => {
+    this.setState({
+      editMode: true,
+      name: '',
+      summary: '',
+      phone: '',
+      email: '',
+      location: '',
+      linkedIn: '',
+      personalSite: '',
+      workList: [],
+      educationList: [],
     });
   };
 
@@ -141,6 +168,24 @@ export default class CV extends Component {
             this.handleDeleteItem(e, 'educationList');
           }}
         />
+        <div className='c-cv-buttons'>
+          <button
+            type='submit'
+            className='c-button'
+            value='submit'
+            onClick={this.handleToggleEditMode}
+          >
+            Edit CV
+          </button>
+          <button
+            type='reset'
+            className='c-button'
+            value='reset'
+            onClick={this.handleResetCV}
+          >
+            Reset CV
+          </button>
+        </div>
       </form>
     );
 
@@ -157,6 +202,19 @@ export default class CV extends Component {
         />
         <WorkPreview workList={workList} />
         <EducationPreview educationList={educationList} />
+        <div className='c-cv-buttons'>
+          <button
+            type='button'
+            className='c-button'
+            value='edit'
+            onClick={this.handleToggleEditMode}
+          >
+            Edit CV
+          </button>
+          <button type='button' className='c-button' value='save'>
+            Save as PDF
+          </button>
+        </div>
       </div>
     );
 
