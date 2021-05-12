@@ -11,6 +11,8 @@ export default function PersonalFieldset({
   linkedIn,
   personalSite,
   changeEvent,
+  blurEvent,
+  errors,
 }) {
   return (
     <fieldset className='c-fieldset c-fieldset__personal'>
@@ -29,7 +31,13 @@ export default function PersonalFieldset({
         defaultValue={name}
         required
         changeEvent={changeEvent}
-      />
+        blurEvent={blurEvent}
+        errors={errors.name}
+      >
+        <div className='c-input__error' aria-live='polite'>
+          {errors.name}
+        </div>
+      </SimpleInput>
       <TextArea
         label='Personal summary'
         id='summary'
@@ -45,8 +53,15 @@ export default function PersonalFieldset({
         fieldName='phone'
         defaultValue={phone}
         required
+        pattern={'5'}
         changeEvent={changeEvent}
-      />
+        blurEvent={blurEvent}
+        errors={errors.phone}
+      >
+        <div className='c-input__error' aria-live='polite'>
+          {errors.phone}
+        </div>
+      </SimpleInput>
       <SimpleInput
         type='email'
         label='Email'
@@ -54,8 +69,15 @@ export default function PersonalFieldset({
         fieldName='email'
         defaultValue={email}
         required
+        pattern='.{1,}@.{1,}\.com'
         changeEvent={changeEvent}
-      />
+        blurEvent={blurEvent}
+        errors={errors.email}
+      >
+        <div className='c-input__error' aria-live='polite'>
+          {errors.email}
+        </div>
+      </SimpleInput>
       <SimpleInput
         type='text'
         label='Location'

@@ -12,6 +12,7 @@ export default class CV extends Component {
     super(props);
     this.state = {
       editMode: true,
+      valid: false,
       name: '',
       summary: '',
       phone: '',
@@ -21,12 +22,12 @@ export default class CV extends Component {
       personalSite: '',
       workList: [],
       educationList: [],
+      errors: {},
     };
   }
 
   handleUpdatePersonal = (e) => {
     const name = e.target.name;
-
     this.setState({
       [name]: e.target.value,
     });
@@ -85,7 +86,7 @@ export default class CV extends Component {
         [list]: listCopy,
       },
       () => {
-        console.log(this.state.workList);
+        console.log(this.state);
       }
     );
   };
@@ -102,9 +103,71 @@ export default class CV extends Component {
 
   handleToggleEditMode = (e) => {
     e.preventDefault();
-    this.setState({
-      editMode: !this.state.editMode,
-    });
+    // Check whether all inputs are valid upon clicking the Preview CV button
+    this.handleValidateOnSubmit()
+      ? // Reset errors to an empty object when all inputs are valid
+        this.setState(
+          {
+            editMode: !this.state.editMode,
+            errors: {},
+          },
+          () => {
+            console.log(this.state);
+          }
+        )
+      : // Add a form error if any input is invalid upon submission
+        this.setState({
+          errors: {
+            ...this.state.errors,
+            form: 'Unable to preview your CV. Make sure all required fields are filled out and all fields have a valid input.',
+          },
+        });
+  };
+
+  handleValidateInputs = (target) => {
+    const { name, value } = target;
+
+    const errorTypes = {
+      none: '',
+      blank: `${name} cannot be blank.`,
+      phonePattern: `${value} is not a valid phone number. Make sure there are no letters or special characters.`,
+      emailPattern: `${value} is not a valid email. Make sure the @ symbol and a domain (e.g. ".com") are included.`,
+    };
+
+    const setErrorState = (type) => {
+      this.setState(
+        {
+          errors: {
+            ...this.state.errors,
+            [name]: errorTypes[type],
+          },
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
+    };
+
+    // Set fields' error state to an empty string when field is valid
+    if (target.validity) {
+      setErrorState('none');
+    }
+
+    if (target.validity.valueMissing) {
+      setErrorState('blank');
+    }
+
+    if (target.validity.patternMismatch) {
+      setErrorState(`${name}Pattern`);
+    }
+  };
+
+  handleValidateOnSubmit = () => {
+    const formIsValid = Array.from(document.querySelectorAll('input')).every(
+      (input) => input.checkValidity()
+    );
+
+    return formIsValid;
   };
 
   handleResetCV = () => {
@@ -119,6 +182,7 @@ export default class CV extends Component {
       personalSite: '',
       workList: [],
       educationList: [],
+      errors: {},
     });
   };
 
@@ -134,6 +198,7 @@ export default class CV extends Component {
       personalSite,
       workList,
       educationList,
+      errors,
     } = this.state;
 
     const cvEdit = (
@@ -147,6 +212,10 @@ export default class CV extends Component {
           linkedIn={linkedIn}
           personalSite={personalSite}
           changeEvent={this.handleUpdatePersonal}
+          blurEvent={(e) => {
+            this.handleValidateInputs(e.target);
+          }}
+          errors={errors}
         />
         <WorkFieldset
           workList={workList}
@@ -168,6 +237,9 @@ export default class CV extends Component {
             this.handleDeleteItem(e, 'educationList');
           }}
         />
+        <div className='c-cv-submit-errors' aria-live='polite'>
+          {errors.form}
+        </div>
         <div className='c-cv-buttons'>
           <button
             type='submit'

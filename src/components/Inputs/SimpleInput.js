@@ -18,7 +18,10 @@ export default function SimpleInput(props) {
     defaultValue,
     disabled,
     required,
+    pattern,
     changeEvent,
+    blurEvent,
+    errors,
   } = props;
 
   const requiredIndicator = required ? (
@@ -36,14 +39,17 @@ export default function SimpleInput(props) {
       <input
         type={type}
         id={id}
-        className='c-input__field'
+        className={`c-input__field ${errors ? 'is-invalid' : ''}`}
         name={fieldName}
         defaultValue={defaultValue}
         disabled={disabled}
         required={required}
+        pattern={pattern}
         aria-required={required}
         onChange={changeEvent}
+        onBlur={blurEvent}
       />
+      {props.children}
     </div>
   );
 }
