@@ -3,6 +3,7 @@ import React from 'react';
 import SimpleInput from '../../Inputs/SimpleInput';
 import DateRange from '../../Inputs/DateRange';
 import TextArea from '../../Inputs/TextArea';
+import { ReactComponent as DeleteIcon } from '../../../assets/images/icons/delete.svg';
 
 export default function WorkFieldset({
   workList,
@@ -12,8 +13,8 @@ export default function WorkFieldset({
 }) {
   return (
     <fieldset className='c-fieldset c-fieldset__work'>
-      <legend>
-        <h2 className='c-fieldset__legend'>Work Experience</h2>
+      <legend className='c-fieldset__legend'>
+        <h2 className='c-fieldset__legend-title'>Work Experience</h2>
       </legend>
       <ul role='list' className='c-fieldset__list' aria-label='work experience'>
         {workList.map((item) => {
@@ -62,7 +63,13 @@ export default function WorkFieldset({
                   checkboxName='currentlyEmployed'
                   changeEvent={changeEvent}
                 />
-                <button type='button' value='delete' onClick={deleteItemEvent}>
+                <button
+                  type='button'
+                  className='c-button--delete'
+                  value='delete'
+                  onClick={deleteItemEvent}
+                >
+                  <DeleteIcon className='c-button__icon' aria-hidden='true' />
                   Delete
                 </button>
               </>
@@ -70,7 +77,12 @@ export default function WorkFieldset({
           );
         })}
       </ul>
-      <button type='button' value='add' onClick={addItemEvent}>
+      <button
+        type='button'
+        className='c-button--contained'
+        value='add'
+        onClick={addItemEvent}
+      >
         Add Work
       </button>
     </fieldset>

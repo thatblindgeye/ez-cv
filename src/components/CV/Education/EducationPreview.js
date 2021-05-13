@@ -1,17 +1,17 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React from 'react';
-import formatDate from '../../../scripts/date-formatter';
+import { formatDate } from '../../../scripts/formatting';
 
 export default function EducationPreview(props) {
   return (
-    <div className='l-education-preview c-section-preview'>
-      <h2 className='c-section-preview__header'>Education</h2>
-      <ul role='list' aria-label='education'>
+    <div className='l-education-preview c-preview'>
+      <h2 className='c-preview__header'>Education</h2>
+      <ul role='list' className='c-preview__list' aria-label='education'>
         {props.educationList.map((item) => {
           const { id, degree, school, startDate, endDate, currentlyEnrolled } =
             item;
           return (
-            <li key={id}>
+            <li key={id} className='c-preview__list-item'>
               <div className='c-item'>
                 <div className='c-item__main-heading'>{degree}</div>
                 <div className='c-item__secondary-heading'>{school}</div>

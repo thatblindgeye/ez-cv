@@ -1,8 +1,14 @@
 @use '../abstracts' as *;
 
+/*
+ * 1) Prevents input element from overflowing off screen when text zoom is
+ * enabled in a browser and the viewport width is too small. Also prevents the
+ * input from growing too large as the viewport width increases.
+*/
+
 %field-properties {
   display: block;
-  width: min(100%, 400px);
+  width: min(100%, 400px); // 1
   padding: 0.4rem;
   background-color: var(--color-bg-input);
   color: var(--text-primary);
@@ -19,12 +25,23 @@
   &__field {
     @extend %field-properties;
   }
+
+  &__error {
+    width: min(100%, 400px); // 1
+    margin-top: 5px;
+  }
+
+  &__instructions {
+    display: block;
+    width: min(100%, 400px); // 1
+    margin-top: 10px;
+  }
 }
 
 .c-date-range {
   margin: 1.5rem 0;
   &__container {
-    width: min(10rem, 300px);
+    width: min(10rem, 300px); // 1
     margin: 1.5rem 0;
   }
 
@@ -42,7 +59,6 @@
 .c-textarea {
   &__field {
     @extend %field-properties;
-    white-space: pre-line;
   }
 
   & + .c-input {

@@ -16,8 +16,8 @@ export default function PersonalFieldset({
 }) {
   return (
     <fieldset className='c-fieldset c-fieldset__personal'>
-      <legend>
-        <h2 className='c-fieldset__legend'>Personal Info</h2>
+      <legend className='c-fieldset__legend'>
+        <h2 className='c-fieldset__legend-title'>Personal Info</h2>
       </legend>
       <small className='c-required'>
         <span className='c-required__indicator'>*</span>
@@ -60,7 +60,7 @@ export default function PersonalFieldset({
          * Allow any number of spaces for ease of pointing out errors
          * to screen readers (multiple spaces won't appear in error message)
          */
-        pattern={'(\\+\\d{1,} {1,}?)?\\(?\\d{3,}\\)?-? *\\d{3,}-? *\\d{4,}'}
+        pattern={'(\\+\\d{1,}-? *)?\\(?\\d{3,}\\)?-? *\\d{3,}-? *\\d{3,}'}
         changeEvent={changeEvent}
         blurEvent={blurEvent}
         errors={errors.phone}
@@ -69,9 +69,8 @@ export default function PersonalFieldset({
           {errors.phone}
         </div>
         <small id='phone-instructions' className='c-input__instructions'>
-          Can include a leading country calling code (e.g. +1), an area code
-          enclosed in paranthesis, and hyphens or spaces between sets of
-          numbers.
+          Can include a country calling code (e.g. +1), paranthesis, hyphens or
+          spaces.
         </small>
       </SimpleInput>
       <SimpleInput

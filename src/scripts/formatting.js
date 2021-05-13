@@ -7,6 +7,15 @@ const calculateDate = (date) =>
   );
 
 // Return date as a string
-export default function formatDate(date) {
+function formatDate(date) {
   return format(calculateDate(date), 'MMMM yyyy');
 }
+
+function capitalizeString(str) {
+  const firstLetter = str.slice(0, 1).toUpperCase();
+  const newString = firstLetter + str.slice(1);
+
+  return newString;
+}
+
+export { formatDate, capitalizeString };

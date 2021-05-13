@@ -1,7 +1,15 @@
 @use '../abstracts/variables' as *;
 
-.c-section-preview + .c-section-preview {
-  margin-top: 3rem;
+.c-preview {
+  margin-bottom: 40px;
+
+  &__list-item {
+    padding-bottom: 25px;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
 }
 
 .c-personal-contact {

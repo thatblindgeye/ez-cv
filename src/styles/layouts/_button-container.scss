@@ -1,0 +1,15 @@
+@use '../abstracts/mixins' as *;
+
+.l-button-container {
+  display: flex;
+  flex-direction: column;
+  margin: 10px auto;
+
+  & button {
+    margin-bottom: 25px;
+  }
+
+  @include breakpoint-at-least(small) {
+    flex-direction: row;
+  }
+}

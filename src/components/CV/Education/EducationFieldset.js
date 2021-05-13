@@ -2,6 +2,7 @@
 import React from 'react';
 import SimpleInput from '../../Inputs/SimpleInput';
 import DateRange from '../../Inputs/DateRange';
+import { ReactComponent as DeleteIcon } from '../../../assets/images/icons/delete.svg';
 
 export default function EducationFieldset({
   educationList,
@@ -11,8 +12,8 @@ export default function EducationFieldset({
 }) {
   return (
     <fieldset className='c-fieldset c-fieldset__education'>
-      <legend>
-        <h2 className='c-fieldset__legend'>Education</h2>
+      <legend className='c-fieldset__legend'>
+        <h2 className='c-fieldset__legend-title'>Education</h2>
       </legend>
       <ul role='list' className='c-fieldset__list' aria-label='education'>
         {educationList.map((item) => {
@@ -45,14 +46,25 @@ export default function EducationFieldset({
                 checkboxName='currentlyEnrolled'
                 changeEvent={changeEvent}
               />
-              <button type='button' value='delete' onClick={deleteItemEvent}>
+              <button
+                type='button'
+                className='c-button--delete'
+                value='delete'
+                onClick={deleteItemEvent}
+              >
+                <DeleteIcon className='c-button__icon' aria-hidden='true' />
                 Delete
               </button>
             </li>
           );
         })}
       </ul>
-      <button type='button' value='add' onClick={addItemEvent}>
+      <button
+        type='button'
+        className='c-button--contained'
+        value='add'
+        onClick={addItemEvent}
+      >
         Add Education
       </button>
     </fieldset>

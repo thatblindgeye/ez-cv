@@ -1,0 +1,68 @@
+@use '../abstracts/mixins' as *;
+
+.c-button {
+  --base-size: 1.25rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: var(--base-size);
+
+  &--contained {
+    @extend .c-button;
+    background-color: var(--color-button-contained);
+    color: var(--color-text-inverted);
+    border: none;
+  }
+
+  &--outline {
+    @extend .c-button;
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-button-outline);
+    opacity: 0.8;
+    transition: opacity 200ms linear, border 200ms linear;
+
+    &:hover,
+    &:focus {
+      border: 1px solid var(--color-button-outline-focus);
+      opacity: 1;
+    }
+  }
+
+  &--text {
+    @extend .c-button;
+    background-color: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid transparent;
+    text-transform: uppercase;
+  }
+
+  &--delete {
+    @extend .c-button;
+    background-color: transparent;
+    color: var(--color-button-delete);
+    border: 1px solid transparent;
+    transition: border 200ms linear;
+
+    &:focus,
+    &:hover {
+      border: 1px solid var(--color-button-delete-border);
+      // background-color: var(--color-button-delete-bg);
+    }
+  }
+
+  &__icon {
+    height: var(--base-size);
+    width: var(--base-size);
+    margin-right: 10px;
+  }
+
+  @include breakpoint-at-least(small) {
+    & + button {
+      margin-left: 25px;
+    }
+  }
+}

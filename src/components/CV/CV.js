@@ -6,6 +6,7 @@ import WorkFieldset from './Work/WorkFieldset';
 import WorkPreview from './Work/WorkPreview';
 import EducationFieldset from './Education/EducationFieldset';
 import EducationPreview from './Education/EducationPreview';
+import { capitalizeString } from '../../scripts/formatting';
 
 export default class CV extends Component {
   constructor(props) {
@@ -101,9 +102,9 @@ export default class CV extends Component {
     });
   };
 
-  handleToggleEditMode = (e) => {
+  handleSubmit = (e) => {
     e.preventDefault();
-    // Check whether all inputs are valid upon clicking the Preview CV button
+    // Check whether all inputs are valid upon clicking the submit button
     this.handleValidateOnSubmit()
       ? // Reset errors to an empty object when all inputs are valid
         this.setState(
@@ -124,12 +125,12 @@ export default class CV extends Component {
         });
   };
 
-  handleValidateInputs = (target) => {
-    const { name, value } = target;
+  handleValidateInputs = (e) => {
+    const { name, value } = e.target;
 
     const errorTypes = {
       none: '',
-      blank: `${name} cannot be blank.`,
+      blank: `${capitalizeString(name)} cannot be blank.`,
       phonePattern: `${value} is not a valid phone number. Make sure you include the whole number and only use valid characters.`,
       emailPattern: `${value} is not a valid email. Make sure you include a username, the @ symbol, and a domain (e.g. "gmail.com").`,
     };
@@ -149,15 +150,15 @@ export default class CV extends Component {
     };
 
     // Set fields' error state to an empty string when field is valid
-    if (target.validity) {
+    if (e.target.validity) {
       setErrorState('none');
     }
 
-    if (target.validity.valueMissing) {
+    if (e.target.validity.valueMissing) {
       setErrorState('blank');
     }
 
-    if (target.validity.patternMismatch) {
+    if (e.target.validity.patternMismatch) {
       setErrorState(`${name}Pattern`);
     }
   };
@@ -202,7 +203,7 @@ export default class CV extends Component {
     } = this.state;
 
     const cvEdit = (
-      <form autoComplete='off' noValidate>
+      <form className='c-form' autoComplete='off' noValidate>
         <PersonalFieldset
           name={name}
           summary={summary}
@@ -212,9 +213,7 @@ export default class CV extends Component {
           linkedIn={linkedIn}
           personalSite={personalSite}
           changeEvent={this.handleUpdatePersonal}
-          blurEvent={(e) => {
-            this.handleValidateInputs(e.target);
-          }}
+          blurEvent={this.handleValidateInputs}
           errors={errors}
         />
         <WorkFieldset
@@ -237,21 +236,21 @@ export default class CV extends Component {
             this.handleDeleteItem(e, 'educationList');
           }}
         />
-        <div className='c-cv-submit-errors' aria-live='polite'>
+        <div className='c-form__errors' aria-live='polite'>
           {errors.form}
         </div>
-        <div className='c-cv-buttons'>
+        <div className='l-button-container'>
           <button
             type='submit'
-            className='c-button'
+            className='c-button--contained'
             value='submit'
-            onClick={this.handleToggleEditMode}
+            onClick={this.handleSubmit}
           >
             Preview CV
           </button>
           <button
             type='reset'
-            className='c-button'
+            className='c-button--outline'
             value='reset'
             onClick={this.handleResetCV}
           >
@@ -262,7 +261,7 @@ export default class CV extends Component {
     );
 
     const cvPreview = (
-      <div className='c-cv-preview'>
+      <div className='c-preview-container'>
         <PersonalPreview
           name={name}
           summary={summary}
@@ -274,16 +273,16 @@ export default class CV extends Component {
         />
         <WorkPreview workList={workList} />
         <EducationPreview educationList={educationList} />
-        <div className='c-cv-buttons'>
+        <div className='l-button-container'>
           <button
             type='button'
-            className='c-button'
+            className='c-button--contained'
             value='edit'
-            onClick={this.handleToggleEditMode}
+            onClick={this.handleSubmit}
           >
             Edit CV
           </button>
-          <button type='button' className='c-button' value='save'>
+          <button type='button' className='c-button--outline' value='save'>
             Save as PDF
           </button>
         </div>

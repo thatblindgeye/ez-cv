@@ -1,12 +1,12 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React from 'react';
-import formatDate from '../../../scripts/date-formatter';
+import { formatDate } from '../../../scripts/formatting';
 
 export default function WorkPreview(props) {
   return (
-    <div className='l-work-preview c-section-preview'>
-      <h2 className='c-section-preview__header'>Work Experience</h2>
-      <ul role='list' aria-label='work experience'>
+    <div className='l-work-preview c-preview'>
+      <h2 className='c-preview__header'>Work Experience</h2>
+      <ul role='list' className='c-preview__list' aria-label='work experience'>
         {props.workList.map((item) => {
           const {
             id,
@@ -18,7 +18,7 @@ export default function WorkPreview(props) {
             currentlyEmployed,
           } = item;
           return (
-            <li key={id}>
+            <li key={id} className='c-preview__list-item'>
               <div className='c-item'>
                 <div className='c-item__main-heading'>{position}</div>
                 <div className='c-item__secondary-heading'>{employer}</div>

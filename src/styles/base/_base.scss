@@ -53,6 +53,11 @@ label,
 .c-checkbox,
 [role='button'],
 [role='checkbox'],
-[role='switch'] {
+[role='switch'],
+[type='date'] {
   @extend %clickable;
+}
+
+input[aria-disabled='true']:hover {
+  cursor: not-allowed;
 }

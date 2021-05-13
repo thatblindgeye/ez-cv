@@ -14,7 +14,7 @@ export default function PersonalPreview({
   personalSite,
 }) {
   return (
-    <div className='l-personal-preview c-section-preview'>
+    <div className='l-personal-preview c-preview'>
       <div className='c-personal-main'>
         <h1 className='c-personal-main__name'>{name}</h1>
         <div className='c-personal-main__summary'>{summary}</div>
