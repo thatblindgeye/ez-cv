@@ -12,7 +12,9 @@
   padding: 0.4rem;
   background-color: var(--color-bg-input);
   color: var(--text-primary);
-  border: 2px solid var(--color-border-input);
+  border: 2px solid transparent;
+  outline: 1px solid var(--color-border-input);
+  transition: border 200ms linear;
 
   &:focus {
     border: 2px solid var(--color-border-input-focus);
@@ -29,6 +31,7 @@
   &__error {
     width: min(100%, 400px); // 1
     margin-top: 5px;
+    color: var(--color-message-error);
   }
 
   &__instructions {
@@ -64,8 +67,4 @@
   & + .c-input {
     margin-top: 1.5rem;
   }
-}
-
-input[aria-disabled='true'] {
-  opacity: $disabled;
 }

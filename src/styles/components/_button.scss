@@ -14,7 +14,19 @@
     @extend .c-button;
     background-color: var(--color-button-contained);
     color: var(--color-text-inverted);
-    border: none;
+    border: 2px solid transparent;
+    transition: transform 200ms linear, background-color 200ms linear;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-button-contained-focus);
+    }
+
+    &:focus {
+      box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+        0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+      transform: scale(1.05);
+    }
   }
 
   &--outline {
@@ -22,22 +34,30 @@
     background-color: transparent;
     color: var(--color-text-primary);
     border: 1px solid var(--color-button-outline);
-    opacity: 0.8;
-    transition: opacity 200ms linear, border 200ms linear;
+    transition: transform 200ms linear, border 200ms linear;
 
     &:hover,
     &:focus {
       border: 1px solid var(--color-button-outline-focus);
-      opacity: 1;
+    }
+
+    &:focus {
+      transform: scale(1.05);
     }
   }
 
   &--text {
     @extend .c-button;
     background-color: transparent;
-    color: var(--color-text-primary);
+    color: var(--color-button-text);
     border: 1px solid transparent;
     text-transform: uppercase;
+    transition: border 200ms linear;
+
+    &:hover,
+    &:focus {
+      border: 1px solid var(--color-button-text-border);
+    }
   }
 
   &--delete {

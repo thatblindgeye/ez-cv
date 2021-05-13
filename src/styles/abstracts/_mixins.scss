@@ -27,16 +27,6 @@
   }
 }
 
-/* 
- * Creates a branded dark surface for dark theme 
- * using $dark-surface map in _colors file
- */
-@mixin branded-dark-surface($brand-color, $dp, $percent: 8%) {
-  $surface: map-get($dark-surface, $dp);
-
-  background-color: mix($brand-color, $surface, $percent);
-}
-
 @mixin wrap-long-words {
   overflow-wrap: break-word;
   word-wrap: break-word;

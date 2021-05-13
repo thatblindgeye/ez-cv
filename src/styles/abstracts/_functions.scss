@@ -7,6 +7,17 @@
   @return rgba($color, $opacity);
 }
 
+/* 
+ * Creates a branded dark surface for dark theme using $dark-surface map and 
+ * chosen color map from _colors file
+ */
+@function branded-dark-surface($color-map, $shade, $dp, $percent: 8%) {
+  $surface: map-get($dark-surface, $dp);
+  $color: map-get($color-map, $shade);
+
+  @return mix($color, $surface, $percent);
+}
+
 /*
  * @function theme-exists
  * Checks if VALUE key exists within theme-values map in _theme-utilities file.

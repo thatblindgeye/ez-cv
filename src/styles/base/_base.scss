@@ -58,6 +58,10 @@ label,
   @extend %clickable;
 }
 
-input[aria-disabled='true']:hover {
-  cursor: not-allowed;
+input[aria-disabled='true'] {
+  opacity: $disabled;
+
+  &:hover {
+    cursor: not-allowed;
+  }
 }
