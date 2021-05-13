@@ -19,7 +19,7 @@ export default function PersonalFieldset({
       <legend>
         <h2 className='c-fieldset__legend'>Personal Info</h2>
       </legend>
-      <small className='c-required__notice'>
+      <small className='c-required'>
         <span className='c-required__indicator'>*</span>
         indicates a required field.
       </small>
@@ -53,7 +53,14 @@ export default function PersonalFieldset({
         fieldName='phone'
         defaultValue={phone}
         required
-        pattern={'5'}
+        describedby='phone-instructions'
+        /*
+         * Match any conventional US format, including optional calling code
+         *
+         * Allow any number of spaces for ease of pointing out errors
+         * to screen readers (multiple spaces won't appear in error message)
+         */
+        pattern={'(\\+\\d{1,} {1,}?)?\\(?\\d{3,}\\)?-? *\\d{3,}-? *\\d{4,}'}
         changeEvent={changeEvent}
         blurEvent={blurEvent}
         errors={errors.phone}
@@ -61,6 +68,11 @@ export default function PersonalFieldset({
         <div className='c-input__error' aria-live='polite'>
           {errors.phone}
         </div>
+        <small id='phone-instructions' className='c-input__instructions'>
+          Can include a leading country calling code (e.g. +1), an area code
+          enclosed in paranthesis, and hyphens or spaces between sets of
+          numbers.
+        </small>
       </SimpleInput>
       <SimpleInput
         type='email'
@@ -69,7 +81,7 @@ export default function PersonalFieldset({
         fieldName='email'
         defaultValue={email}
         required
-        pattern='.{1,}@.{1,}\.com'
+        pattern='.{1,}@.{1,}\.[a-zA-Z]{1,}'
         changeEvent={changeEvent}
         blurEvent={blurEvent}
         errors={errors.email}

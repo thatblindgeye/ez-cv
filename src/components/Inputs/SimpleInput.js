@@ -18,12 +18,14 @@ export default function SimpleInput(props) {
     defaultValue,
     disabled,
     required,
+    describedby,
     pattern,
     changeEvent,
     blurEvent,
     errors,
   } = props;
 
+  // Place a styled asterisk next to labels for inputs that are required
   const requiredIndicator = required ? (
     <span className='c-required__indicator' aria-hidden='true'>
       *
@@ -46,9 +48,11 @@ export default function SimpleInput(props) {
         required={required}
         pattern={pattern}
         aria-required={required}
+        aria-describedby={describedby}
         onChange={changeEvent}
         onBlur={blurEvent}
       />
+      {/* Pass in error or instruction fields as needed */}
       {props.children}
     </div>
   );

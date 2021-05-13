@@ -130,8 +130,8 @@ export default class CV extends Component {
     const errorTypes = {
       none: '',
       blank: `${name} cannot be blank.`,
-      phonePattern: `${value} is not a valid phone number. Make sure there are no letters or special characters.`,
-      emailPattern: `${value} is not a valid email. Make sure the @ symbol and a domain (e.g. ".com") are included.`,
+      phonePattern: `${value} is not a valid phone number. Make sure you include the whole number and only use valid characters.`,
+      emailPattern: `${value} is not a valid email. Make sure you include a username, the @ symbol, and a domain (e.g. "gmail.com").`,
     };
 
     const setErrorState = (type) => {
