@@ -1,0 +1,46 @@
+@use '../abstracts/' as *;
+
+.l-form {
+  margin: auto;
+
+  &__errors {
+    margin-top: 3.5rem;
+  }
+
+  @include breakpoint-at-least(37em) {
+    max-width: 600px;
+    width: 75%;
+  }
+}
+
+.l-preview-container {
+  margin: auto;
+
+  @include breakpoint-at-least(37em) {
+    max-width: 800px;
+    width: 75%;
+  }
+}
+
+.l-personal-preview {
+  display: grid;
+  grid-template-areas:
+    'main'
+    'contact';
+  row-gap: 25px;
+
+  @include breakpoint-at-least(large) {
+    grid-template-areas: 'main contact';
+    align-items: center;
+    column-gap: 25px;
+    row-gap: 0;
+  }
+}
+
+.c-personal-main {
+  grid-area: main;
+}
+
+.c-personal-contact {
+  grid-area: contact;
+}

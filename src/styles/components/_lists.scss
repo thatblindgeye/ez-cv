@@ -4,13 +4,4 @@
     list-style-type: none;
     padding: 0;
   }
-
-  &__list-item {
-    padding-bottom: 25px;
-
-    & + .c-fieldset__list-item {
-      padding-top: 25px;
-      border-top: 1px solid var(--color-border-separator);
-    }
-  }
 }

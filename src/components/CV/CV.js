@@ -13,7 +13,6 @@ export default class CV extends Component {
     super(props);
     this.state = {
       editMode: true,
-      valid: false,
       name: '',
       summary: '',
       phone: '',
@@ -203,7 +202,7 @@ export default class CV extends Component {
     } = this.state;
 
     const cvEdit = (
-      <form className='c-form' autoComplete='off' noValidate>
+      <form className='l-form' autoComplete='off' noValidate>
         <PersonalFieldset
           name={name}
           summary={summary}
@@ -236,7 +235,7 @@ export default class CV extends Component {
             this.handleDeleteItem(e, 'educationList');
           }}
         />
-        <div className='c-form__errors' aria-live='polite'>
+        <div className='l-form__errors' aria-live='polite'>
           {errors.form}
         </div>
         <div className='l-button-container'>
@@ -261,7 +260,7 @@ export default class CV extends Component {
     );
 
     const cvPreview = (
-      <div className='c-preview-container'>
+      <div className='l-preview-container'>
         <PersonalPreview
           name={name}
           summary={summary}

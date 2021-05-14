@@ -13,7 +13,7 @@ export default function EducationPreview(props) {
           return (
             <li key={id} className='c-preview__list-item'>
               <div className='c-item'>
-                <div className='c-item__main-heading'>{degree}</div>
+                <h3 className='c-item__main-heading'>{degree}</h3>
                 <div className='c-item__secondary-heading'>{school}</div>
                 <div className='c-item__date-range'>
                   <span>

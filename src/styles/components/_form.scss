@@ -1,18 +1,5 @@
 @use '../abstracts/mixins' as *;
 
-.c-form {
-  margin: auto;
-
-  &__errors {
-    margin-top: 45px;
-  }
-
-  @include breakpoint-at-least(600px) {
-    max-width: 600px;
-    width: 75%;
-  }
-}
-
 .c-fieldset {
   margin-bottom: 50px;
   padding: 0;
@@ -21,6 +8,15 @@
   &__legend {
     width: 100%;
     border-bottom: 2px solid var(--color-border-legend);
+  }
+
+  &__list-item {
+    padding-bottom: 25px;
+
+    & + .c-fieldset__list-item {
+      padding-top: 25px;
+      border-top: 1px solid var(--color-border-separator);
+    }
   }
 }
 

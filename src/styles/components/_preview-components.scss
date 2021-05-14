@@ -1,0 +1,29 @@
+@use '../abstracts/' as *;
+
+.c-preview {
+  margin-bottom: 2rem;
+
+  &__list-item {
+    margin-left: 1.5rem;
+    padding-bottom: 1.5rem;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.c-personal-contact {
+  &__icon {
+    height: 1.1rem;
+    width: 1.1rem;
+    margin-right: 0.75rem;
+    opacity: $low-emphasis;
+  }
+}
+
+.c-item {
+  &__additional-details {
+    margin-top: 0.5rem;
+  }
+}

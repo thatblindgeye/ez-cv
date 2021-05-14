@@ -1,0 +1,30 @@
+@use '../abstracts/' as *;
+
+.c-date-range {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-areas:
+    'start-date'
+    'end-date'
+    'current';
+
+  @include breakpoint-at-least(small) {
+    grid-template-areas:
+      'start-date end-date'
+      '. current';
+    column-gap: 25px;
+
+    &__container:first-child {
+      grid-area: start-date;
+    }
+
+    &__container:nth-child(2) {
+      grid-area: end-date;
+    }
+
+    & .c-checkbox {
+      grid-area: current;
+      // align-self: flex-start;
+    }
+  }
+}

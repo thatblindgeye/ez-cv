@@ -20,7 +20,7 @@ export default function WorkPreview(props) {
           return (
             <li key={id} className='c-preview__list-item'>
               <div className='c-item'>
-                <div className='c-item__main-heading'>{position}</div>
+                <h3 className='c-item__main-heading'>{position}</h3>
                 <div className='c-item__secondary-heading'>{employer}</div>
                 <div className='c-item__date-range'>
                   <span>
@@ -36,8 +36,7 @@ export default function WorkPreview(props) {
                 </div>
                 <div className='c-item__additional-details'>
                   <div className='c-item__responsibilities'>
-                    Responsibilities
-                    <pre>{responsibilities}</pre>
+                    <div>{responsibilities}</div>
                   </div>
                 </div>
               </div>

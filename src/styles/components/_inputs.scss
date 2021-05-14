@@ -42,10 +42,10 @@
 }
 
 .c-date-range {
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 3rem;
   &__container {
     width: min(10rem, 300px); // 1
-    margin: 1.5rem 0;
+    margin-bottom: 1.5rem;
   }
 
   &__field {

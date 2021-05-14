@@ -62,3 +62,23 @@ pre {
   margin: 0;
   font-family: $base-fonts;
 }
+
+.l-preview-container {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.c-personal-main {
+  &__name {
+    font-size: 3rem;
+  }
+}
+
+.c-personal-contact {
+  font-size: 1.1rem;
+}
+
+.c-item {
+  &__secondary-heading {
+    font-size: 1.1rem;
+  }
+}
