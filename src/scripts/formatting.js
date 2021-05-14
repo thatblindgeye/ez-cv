@@ -18,4 +18,10 @@ function capitalizeString(str) {
   return newString;
 }
 
-export { formatDate, capitalizeString };
+function convertPhoneToHREF(phone) {
+  const phoneHREF = phone.replace(/[ \-()]/g, '');
+
+  return phoneHREF;
+}
+
+export { formatDate, capitalizeString, convertPhoneToHREF };

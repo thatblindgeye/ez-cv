@@ -3,6 +3,7 @@ import { ReactComponent as PhoneIcon } from '../../../assets/images/icons/phone.
 import { ReactComponent as EmailIcon } from '../../../assets/images/icons/email.svg';
 import { ReactComponent as LocationIcon } from '../../../assets/images/icons/location.svg';
 import { ReactComponent as SiteIcon } from '../../../assets/images/icons/link.svg';
+import { convertPhoneToHREF } from '../../../scripts/formatting';
 
 export default function PersonalPreview({
   name,
@@ -19,7 +20,7 @@ export default function PersonalPreview({
         <h1 className='c-personal-main__name'>{name}</h1>
         <div className='c-personal-main__summary'>{summary}</div>
       </div>
-      <div className='c-personal-contact'>
+      <address className='c-personal-contact'>
         {phone.trim() !== '' ? (
           <div className='c-personal-contact__phone'>
             <span>
@@ -28,7 +29,7 @@ export default function PersonalPreview({
                 aria-hidden='true'
               />
             </span>
-            {phone}
+            <a href={`tel:${convertPhoneToHREF(phone)}`}>{phone}</a>
           </div>
         ) : null}
         {email.trim() !== '' ? (
@@ -39,7 +40,7 @@ export default function PersonalPreview({
                 aria-hidden='true'
               />
             </span>
-            {email}
+            <a href={`mailto:${email}`}>{email}</a>
           </div>
         ) : null}
         {location.trim() !== '' ? (
@@ -61,7 +62,7 @@ export default function PersonalPreview({
                 aria-hidden='true'
               />
             </span>
-            {linkedIn}
+            <a href={linkedIn}>{linkedIn}</a>
           </div>
         ) : null}
         {personalSite.trim() !== '' ? (
@@ -72,10 +73,10 @@ export default function PersonalPreview({
                 aria-hidden='true'
               />
             </span>
-            {personalSite}
+            <a href={personalSite}>{personalSite}</a>
           </div>
         ) : null}
-      </div>
+      </address>
     </div>
   );
 }
