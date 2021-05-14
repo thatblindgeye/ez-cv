@@ -31,7 +31,7 @@
 
   @include breakpoint-at-least(large) {
     grid-template-areas: 'main contact';
-    align-items: center;
+    align-items: flex-end;
     column-gap: 25px;
     row-gap: 0;
   }

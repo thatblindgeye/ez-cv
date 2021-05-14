@@ -132,6 +132,7 @@ export default class CV extends Component {
       blank: `${capitalizeString(name)} cannot be blank.`,
       phonePattern: `${value} is not a valid phone number. Make sure you include the whole number and only use valid characters.`,
       emailPattern: `${value} is not a valid email. Make sure you include a username, the @ symbol, and a domain (e.g. "gmail.com").`,
+      url: 'URL is invalid. Make sure the url starts with either https:// or http://',
     };
 
     const setErrorState = (type) => {
@@ -159,6 +160,10 @@ export default class CV extends Component {
 
     if (e.target.validity.patternMismatch) {
       setErrorState(`${name}Pattern`);
+    }
+
+    if (e.target.validity.typeMismatch) {
+      setErrorState('url');
     }
   };
 
@@ -270,8 +275,10 @@ export default class CV extends Component {
           linkedIn={linkedIn}
           personalSite={personalSite}
         />
-        <WorkPreview workList={workList} />
-        <EducationPreview educationList={educationList} />
+        {workList.length ? <WorkPreview workList={workList} /> : null}
+        {educationList.length ? (
+          <EducationPreview educationList={educationList} />
+        ) : null}
         <div className='l-button-container'>
           <button
             type='button'

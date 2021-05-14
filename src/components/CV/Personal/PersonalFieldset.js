@@ -103,16 +103,32 @@ export default function PersonalFieldset({
         id='linkedin'
         fieldName='linkedIn'
         defaultValue={linkedIn}
+        describedby='url-instructions'
         changeEvent={changeEvent}
-      />
+        blurEvent={blurEvent}
+      >
+        <div className='c-input__error' aria-live='polite'>
+          {errors.linkedIn}
+        </div>
+        <small id='url-instructions' className='c-input__instructions'>
+          URL's must begin with either <code>https://</code> or{' '}
+          <code>http://</code>
+        </small>
+      </SimpleInput>
       <SimpleInput
         type='url'
         label='Website'
         id='personal-site'
         fieldName='personalSite'
         defaultValue={personalSite}
+        describedby='url-instructions'
         changeEvent={changeEvent}
-      />
+        blurEvent={blurEvent}
+      >
+        <div className='c-input__error' aria-live='polite'>
+          {errors.personalSite}
+        </div>
+      </SimpleInput>
     </fieldset>
   );
 }
