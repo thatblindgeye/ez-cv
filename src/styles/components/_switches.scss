@@ -3,13 +3,13 @@
   --large: 1.25;
   --x-large: 1.5;
 
-  display: flex;
-  align-items: center;
-  width: 3.5rem;
-  padding: 5px;
   background-color: var(--color-bg-base);
   border: 1px solid var(--color-border-primary);
   border-radius: 25px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  width: 3.5rem;
 
   &[aria-checked='false'] {
     justify-content: flex-start;

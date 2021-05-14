@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <>
         <Header />
-        <main aria-live='polite'>
+        <main className='main' aria-live='polite'>
           <CV />
         </main>
         <footer></footer>

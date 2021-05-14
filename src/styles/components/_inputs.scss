@@ -7,12 +7,12 @@
 */
 
 %field-properties {
+  background-color: var(--color-bg-input);
+  border: 2px solid transparent;
+  color: var(--text-primary);
   display: block;
   width: min(100%, 400px); // 1
   padding: 0.4rem;
-  background-color: var(--color-bg-input);
-  color: var(--text-primary);
-  border: 2px solid transparent;
   outline: 1px solid var(--color-border-input);
   transition: border 200ms linear;
 
@@ -29,23 +29,23 @@
   }
 
   &__error {
-    width: min(100%, 400px); // 1
-    margin-top: 5px;
     color: var(--color-message-error);
+    margin-top: 5px;
+    width: min(100%, 400px); // 1
   }
 
   &__instructions {
     display: block;
-    width: min(100%, 400px); // 1
     margin-top: 10px;
+    width: min(100%, 400px); // 1
   }
 }
 
 .c-date-range {
   margin: 1.5rem 0 3rem;
   &__container {
-    width: min(10rem, 300px); // 1
     margin-bottom: 1.5rem;
+    width: min(10rem, 300px); // 1
   }
 
   &__field {
@@ -53,8 +53,8 @@
     transition: opacity 200ms linear;
 
     &::-webkit-calendar-picker-indicator {
-      margin-left: 0;
       filter: var(--color-date-input-icon);
+      margin-left: 0;
     }
   }
 }

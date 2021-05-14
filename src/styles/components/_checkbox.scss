@@ -9,13 +9,13 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  max-width: max-content;
   line-height: 1.25;
+  max-width: max-content;
 
   &__field {
-    flex-shrink: 0;
     border: 2px solid var(--color-border-input);
     border-radius: 5px;
+    flex-shrink: 0;
 
     // Size modifiers for checkbox field
     &--base {

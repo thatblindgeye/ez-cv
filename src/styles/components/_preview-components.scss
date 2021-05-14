@@ -14,17 +14,14 @@
 }
 
 .c-personal-contact {
-  font-style: normal;
-
   & a {
     color: var(--color-text-primary);
-    text-decoration: none;
     opacity: 0.8;
 
     &:hover,
     &:focus {
-      opacity: 1;
       border-bottom: 1px solid var(--color-link-border);
+      opacity: 1;
     }
   }
 

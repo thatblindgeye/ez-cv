@@ -10,14 +10,14 @@ html {
 }
 
 body {
-  min-height: 100vh;
   background-color: var(--color-bg-base);
   color: var(--color-text-primary);
+  min-height: 100vh;
 }
 
 /**
   * Removes default focus styles for elements 
-  * (MANUALLY ADD FOCUS STYLES LATER)
+  * (MANUALLY ADD FOCUS STYLES)
   */
 * {
   &:focus {
@@ -25,8 +25,8 @@ body {
   }
 }
 
-main {
-  padding: 25px 10px 100px;
+.main {
+  padding: 50px 10px 100px;
 }
 
 h1,

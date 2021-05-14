@@ -111,10 +111,15 @@ export default class CV extends Component {
     // Check whether all inputs are valid upon clicking the submit button
     this.handleValidateOnSubmit()
       ? // Reset errors to an empty object when all inputs are valid
-        this.setState({
-          editMode: !this.state.editMode,
-          errors: {},
-        })
+        this.setState(
+          {
+            editMode: !this.state.editMode,
+            errors: {},
+          },
+          () => {
+            document.documentElement.scrollTop = 0;
+          }
+        )
       : // Add a form error if any input is invalid upon submission
         this.setState({
           errors: {

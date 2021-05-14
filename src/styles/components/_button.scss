@@ -3,18 +3,18 @@
 .c-button {
   --base-size: 1.25rem;
 
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.75rem 1rem;
-  border-radius: 10px;
   font-size: var(--base-size);
+  padding: 0.75rem 1rem;
 
   &--contained {
     @extend .c-button;
     background-color: var(--color-button-contained);
-    color: var(--color-text-inverted);
     border: 2px solid transparent;
+    color: var(--color-text-inverted);
     transition: transform 200ms linear, background-color 200ms linear;
 
     &:hover,
@@ -32,8 +32,8 @@
   &--outline {
     @extend .c-button;
     background-color: transparent;
-    color: var(--color-text-primary);
     border: 1px solid var(--color-button-outline);
+    color: var(--color-text-primary);
     transition: transform 200ms linear, border 200ms linear;
 
     &:hover,
@@ -49,8 +49,8 @@
   &--text {
     @extend .c-button;
     background-color: transparent;
-    color: var(--color-button-text);
     border: 1px solid transparent;
+    color: var(--color-button-text);
     text-transform: uppercase;
     transition: border 200ms linear;
 
@@ -63,14 +63,13 @@
   &--delete {
     @extend .c-button;
     background-color: transparent;
-    color: var(--color-button-delete);
     border: 1px solid transparent;
+    color: var(--color-button-delete);
     transition: border 200ms linear;
 
     &:focus,
     &:hover {
       border: 1px solid var(--color-button-delete-border);
-      // background-color: var(--color-button-delete-bg);
     }
   }
 

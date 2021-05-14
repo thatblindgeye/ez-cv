@@ -1,4 +1,4 @@
-@use '../abstracts' as *;
+@use '../abstracts/variables' as *;
 
 body {
   font-family: $base-fonts;
@@ -58,11 +58,6 @@ input[type='date'] {
   line-height: 1rem;
 }
 
-pre {
-  margin: 0;
-  font-family: $base-fonts;
-}
-
 .l-preview-container {
   font-family: 'Times New Roman', Times, serif;
 }
@@ -75,6 +70,8 @@ pre {
 
 .c-personal-contact {
   font-size: 1.1rem;
+  font-style: normal;
+  text-decoration: none;
 }
 
 .c-item {
