@@ -30,6 +30,11 @@ export default class CV extends Component {
     const name = e.target.name;
     this.setState({
       [name]: e.target.value,
+      // Resets error state to empty string so that screen readers announce errors again
+      errors: {
+        ...this.state.errors,
+        [name]: '',
+      },
     });
   };
 
@@ -68,7 +73,7 @@ export default class CV extends Component {
     });
   };
 
-  handleUpdateList = (e, list) => {
+  handleChange = (e, list) => {
     const currentItem = e.target.closest('li');
     const name = e.target.name;
     const value =
@@ -106,15 +111,10 @@ export default class CV extends Component {
     // Check whether all inputs are valid upon clicking the submit button
     this.handleValidateOnSubmit()
       ? // Reset errors to an empty object when all inputs are valid
-        this.setState(
-          {
-            editMode: !this.state.editMode,
-            errors: {},
-          },
-          () => {
-            console.log(this.state);
-          }
-        )
+        this.setState({
+          editMode: !this.state.editMode,
+          errors: {},
+        })
       : // Add a form error if any input is invalid upon submission
         this.setState({
           errors: {
@@ -136,17 +136,12 @@ export default class CV extends Component {
     };
 
     const setErrorState = (type) => {
-      this.setState(
-        {
-          errors: {
-            ...this.state.errors,
-            [name]: errorTypes[type],
-          },
+      this.setState({
+        errors: {
+          ...this.state.errors,
+          [name]: errorTypes[type],
         },
-        () => {
-          console.log(this.state);
-        }
-      );
+      });
     };
 
     // Set fields' error state to an empty string when field is valid
@@ -162,7 +157,7 @@ export default class CV extends Component {
       setErrorState(`${name}Pattern`);
     }
 
-    if (e.target.validity.typeMismatch) {
+    if (e.target.validity.typeMismatch && name !== 'email') {
       setErrorState('url');
     }
   };
@@ -224,7 +219,7 @@ export default class CV extends Component {
           workList={workList}
           addItemEvent={this.handleAddWork}
           changeEvent={(e) => {
-            this.handleUpdateList(e, 'workList');
+            this.handleChange(e, 'workList');
           }}
           deleteItemEvent={(e) => {
             this.handleDeleteItem(e, 'workList');
@@ -234,7 +229,7 @@ export default class CV extends Component {
           educationList={educationList}
           addItemEvent={this.handleAddEducation}
           changeEvent={(e) => {
-            this.handleUpdateList(e, 'educationList');
+            this.handleChange(e, 'educationList');
           }}
           deleteItemEvent={(e) => {
             this.handleDeleteItem(e, 'educationList');
