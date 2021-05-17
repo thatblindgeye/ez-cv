@@ -288,9 +288,6 @@ export default class CV extends Component {
           >
             Edit CV
           </button>
-          <button type='button' className='c-button--outline' value='save'>
-            Save as PDF
-          </button>
         </div>
       </div>
     );

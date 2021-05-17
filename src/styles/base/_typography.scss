@@ -71,7 +71,9 @@ input[type='date'] {
 .c-personal-contact {
   font-size: 1.1rem;
   font-style: normal;
-  text-decoration: none;
+  & a {
+    text-decoration: none;
+  }
 }
 
 .c-item {
