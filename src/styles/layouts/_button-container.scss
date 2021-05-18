@@ -11,5 +11,9 @@
 
   @include breakpoint-at-least(small) {
     flex-direction: row;
+
+    & button {
+      margin-bottom: 0;
+    }
   }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React from 'react';
-import { formatDate } from '../../../scripts/formatting';
+import { createDateRange } from '../../../scripts/formatting';
 
 export default function EducationPreview(props) {
   return (
@@ -16,20 +16,11 @@ export default function EducationPreview(props) {
                 <h3 className='c-item__main-heading'>{degree}</h3>
                 <div className='c-item__secondary-heading'>{school}</div>
                 <div className='c-item__date-range'>
-                  {startDate || endDate || currentlyEnrolled ? (
-                    <>
-                      <span>
-                        {startDate ? formatDate(startDate) : 'unknown'} to{' '}
-                      </span>
-                      <span>
-                        {currentlyEnrolled
-                          ? 'present'
-                          : endDate === ''
-                          ? 'unknown'
-                          : formatDate(endDate)}
-                      </span>
-                    </>
-                  ) : null}
+                  <>
+                    <span>
+                      {createDateRange(startDate, endDate, currentlyEnrolled)}
+                    </span>
+                  </>
                 </div>
               </div>
             </li>

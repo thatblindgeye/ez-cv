@@ -111,8 +111,9 @@ export default function PersonalFieldset({
           {errors.linkedIn}
         </div>
         <small id='url-instructions' className='c-input__instructions'>
-          URL's must begin with either <code>https://</code> or{' '}
-          <code>http://</code>
+          URL's must begin with either <code>https</code> or <code>http</code>,
+          followed by a colon <span aria-hidden='true'>(:)</span> and two
+          forward slashes <span aria-hidden='true'>(//)</span>.
         </small>
       </SimpleInput>
       <SimpleInput

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import React from 'react';
-import { formatDate } from '../../../scripts/formatting';
+import { createDateRange } from '../../../scripts/formatting';
 
 export default function WorkPreview(props) {
   return (
@@ -23,20 +23,9 @@ export default function WorkPreview(props) {
                 <h3 className='c-item__main-heading'>{position}</h3>
                 <div className='c-item__secondary-heading'>{employer}</div>
                 <div className='c-item__date-range'>
-                  {startDate || endDate || currentlyEmployed ? (
-                    <>
-                      <span>
-                        {startDate ? formatDate(startDate) : 'unknown'} to{' '}
-                      </span>
-                      <span>
-                        {currentlyEmployed
-                          ? 'present'
-                          : endDate === ''
-                          ? 'unknown'
-                          : formatDate(endDate)}
-                      </span>
-                    </>
-                  ) : null}
+                  <span>
+                    {createDateRange(startDate, endDate, currentlyEmployed)}
+                  </span>
                 </div>
                 <div className='c-item__additional-details'>
                   <div className='c-item__responsibilities'>

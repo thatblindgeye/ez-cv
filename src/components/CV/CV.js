@@ -6,6 +6,8 @@ import WorkFieldset from './Work/WorkFieldset';
 import WorkPreview from './Work/WorkPreview';
 import EducationFieldset from './Education/EducationFieldset';
 import EducationPreview from './Education/EducationPreview';
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import PDF from '../CV/PDF';
 import { capitalizeString } from '../../scripts/formatting';
 
 export default class CV extends Component {
@@ -30,7 +32,8 @@ export default class CV extends Component {
     const name = e.target.name;
     this.setState({
       [name]: e.target.value,
-      // Resets error state to empty string so that screen readers announce errors again
+      // Resets error state to empty string so that screen readers announce
+      // any additional errors after typing in the field again
       errors: {
         ...this.state.errors,
         [name]: '',
@@ -86,14 +89,9 @@ export default class CV extends Component {
       return item;
     });
 
-    this.setState(
-      {
-        [list]: listCopy,
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    this.setState({
+      [list]: listCopy,
+    });
   };
 
   handleDeleteItem = (e, list) => {
@@ -137,7 +135,7 @@ export default class CV extends Component {
       blank: `${capitalizeString(name)} cannot be blank.`,
       phonePattern: `${value} is not a valid phone number. Make sure you include the whole number and only use valid characters.`,
       emailPattern: `${value} is not a valid email. Make sure you include a username, the @ symbol, and a domain (e.g. "gmail.com").`,
-      url: 'URL is invalid. Make sure the url starts with either https:// or http://',
+      url: `${value} is not a valid URL. Make sure the URL format follows the input instructions.`,
     };
 
     const setErrorState = (type) => {
@@ -288,6 +286,25 @@ export default class CV extends Component {
           >
             Edit CV
           </button>
+          <PDFDownloadLink
+            className='c-link--download'
+            document={
+              <PDF
+                name={name}
+                summary={summary}
+                phone={phone}
+                email={email}
+                location={location}
+                linkedIn={linkedIn}
+                personalSite={personalSite}
+                work={workList}
+                education={educationList}
+              />
+            }
+            fileName={'myCV'}
+          >
+            Download PDF
+          </PDFDownloadLink>
         </div>
       </div>
     );
