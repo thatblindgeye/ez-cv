@@ -4,12 +4,17 @@
   --x-large: 1.5;
 
   background-color: var(--color-bg-base);
-  border: 1px solid var(--color-border-primary);
+  border: 1px solid var(--color-border-switch);
   border-radius: 25px;
   display: flex;
   align-items: center;
   padding: 5px;
   width: 3.5rem;
+
+  &:focus,
+  &:hover {
+    box-shadow: 0 0 0 2px var(--color-border-primary);
+  }
 
   &[aria-checked='false'] {
     justify-content: flex-start;

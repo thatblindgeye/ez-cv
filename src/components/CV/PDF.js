@@ -1,5 +1,17 @@
 import React from 'react';
-import { Document, Page, Text, View, StyleSheet } from '@react-pdf/renderer';
+import {
+  Document,
+  Page,
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  Link,
+} from '@react-pdf/renderer';
+import phoneIcon from '../../assets/images/icons/phone_black.png';
+import emailIcon from '../../assets/images/icons/email_black.png';
+import locationIcon from '../../assets/images/icons/location_black.png';
+import siteIcon from '../../assets/images/icons/link_black.png';
 import { createDateRange } from '../../scripts/formatting';
 
 export default function PDF(props) {
@@ -9,8 +21,7 @@ export default function PDF(props) {
     },
     section: {
       marginBottom: 10,
-      paddingTop: 10,
-      paddingBottom: 10,
+      paddingVertical: 10,
       width: '75%',
     },
     personal: {
@@ -23,7 +34,15 @@ export default function PDF(props) {
         fontSize: 12,
       },
       contact: {
+        flexDirection: 'row',
+        alignItems: 'center',
         fontSize: 10,
+        marginBottom: 5,
+      },
+      icon: {
+        height: 10,
+        width: 10,
+        marginRight: 5,
       },
     },
     list: {
@@ -63,17 +82,36 @@ export default function PDF(props) {
             <Text style={personal.summary}>{summary}</Text>
           </View>
           <View>
-            <Text style={personal.contact}>{phone}</Text>
-            <Text style={personal.contact}>
-              <a href={email}>{email}</a>
-            </Text>
-            <Text style={personal.contact}>{location}</Text>
-            <Text style={personal.contact}>
-              <a href={linkedIn}>{linkedIn}</a>
-            </Text>
-            <Text style={personal.contact}>
-              <a href={personalSite}>{personalSite}</a>
-            </Text>
+            {phone ? (
+              <View style={personal.contact}>
+                <Image src={phoneIcon} style={personal.icon} />
+                <Text>{phone}</Text>
+              </View>
+            ) : null}
+            {email ? (
+              <View style={personal.contact}>
+                <Image src={emailIcon} style={personal.icon} />
+                <Link href={`mailto:${email}`}>{email}</Link>
+              </View>
+            ) : null}
+            {location ? (
+              <View style={personal.contact}>
+                <Image src={locationIcon} style={personal.icon} />
+                <Text>{location}</Text>
+              </View>
+            ) : null}
+            {linkedIn ? (
+              <View style={personal.contact}>
+                <Image src={siteIcon} style={personal.icon} />
+                <Link href={linkedIn}>{linkedIn}</Link>
+              </View>
+            ) : null}
+            {personalSite ? (
+              <View style={personal.contact}>
+                <Image src={siteIcon} style={personal.icon} />
+                <Link href={personalSite}>{personalSite}</Link>
+              </View>
+            ) : null}
           </View>
         </View>
         {work.length ? (

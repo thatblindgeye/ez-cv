@@ -28,6 +28,10 @@ Add multiple items for your work or education history. Your work history can inc
 
 **Note:** The responsibilities field in the Work Experience section will not retain any line breaks in preview mode.
 
+#### Download
+
+Once you finish filling out and previewing your CV, you'll be able to download it as a PDF.
+
 #### Preview
 
 Once you've entered all your information and have ensured any and all fields are valid, you'll be able to preview your CV! You can swap between the edit mode and preview mode as you need, just in case you notice you've made a mistake anywhere.
