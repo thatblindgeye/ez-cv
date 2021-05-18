@@ -31,6 +31,7 @@ export default class App extends Component {
 
   handleThemeToggle = (e) => {
     if (e.type === 'click' || e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
       const newTheme = this.state.theme === 'dark' ? 'light' : 'dark';
 
       this.setTheme(newTheme);
