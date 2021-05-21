@@ -54,7 +54,8 @@ label,
   @extend %clickable;
 }
 
-input[aria-disabled='true'] {
+input[aria-disabled='true'],
+input:disabled {
   opacity: $disabled;
 
   &:hover {

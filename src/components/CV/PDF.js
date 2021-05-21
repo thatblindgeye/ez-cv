@@ -119,6 +119,7 @@ export default function PDF(props) {
             <Text style={list.header}>Work Experience</Text>
             {work.map((workItem) => {
               const {
+                id,
                 position,
                 employer,
                 startDate,
@@ -127,7 +128,7 @@ export default function PDF(props) {
                 responsibilities,
               } = workItem;
               return (
-                <View style={list}>
+                <View key={id} style={list}>
                   <Text style={list.primary}>{position}</Text>
                   <Text style={list.secondary}>{employer}</Text>
                   <Text style={list.secondary}>
@@ -143,10 +144,16 @@ export default function PDF(props) {
           <View style={section}>
             <Text style={list.header}>Education</Text>
             {education.map((educationItem) => {
-              const { degree, school, startDate, endDate, currentlyEnrolled } =
-                educationItem;
+              const {
+                id,
+                degree,
+                school,
+                startDate,
+                endDate,
+                currentlyEnrolled,
+              } = educationItem;
               return (
-                <View style={list}>
+                <View key={id} style={list}>
                   <Text style={list.primary}>{degree}</Text>
                   <Text style={list.secondary}>{school}</Text>
                   <Text style={list.secondary}>

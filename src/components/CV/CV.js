@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 import PersonalFieldset from './Personal/PersonalFieldset';
 import PersonalPreview from './Personal/PersonalPreview';
@@ -10,38 +10,35 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import PDF from '../CV/PDF';
 import { capitalizeString } from '../../scripts/formatting';
 
-export default class CV extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editMode: true,
-      name: '',
-      summary: '',
-      phone: '',
-      email: '',
-      location: '',
-      linkedIn: '',
-      personalSite: '',
-      workList: [],
-      educationList: [],
-      errors: {},
-    };
-  }
+export default function CV() {
+  const [editMode, setEditMode] = useState(true);
+  const [personal, setPersonal] = useState({
+    name: '',
+    summary: '',
+    phone: '',
+    email: '',
+    location: '',
+    linkedIn: '',
+    personalSite: '',
+  });
+  const [workList, setWorkList] = useState([]);
+  const [educationList, setEducationList] = useState([]);
+  const [errors, setErrors] = useState({});
 
-  handleUpdatePersonal = (e) => {
+  const handleUpdatePersonal = (e) => {
     const name = e.target.name;
-    this.setState({
+    setPersonal({
+      ...personal,
       [name]: e.target.value,
-      // Resets error state to empty string so that screen readers announce
-      // any additional errors after typing in the field again
-      errors: {
-        ...this.state.errors,
-        [name]: '',
-      },
+    });
+
+    setErrors({
+      ...errors,
+      [name]: '',
     });
   };
 
-  handleAddWork = () => {
+  const handleAddWork = () => {
     const newWork = {
       id: nanoid(),
       position: '',
@@ -52,14 +49,12 @@ export default class CV extends Component {
       currentlyEmployed: false,
     };
 
-    const updatedWorkList = [...this.state.workList, newWork];
+    const updatedWorkList = [...workList, newWork];
 
-    this.setState({
-      workList: updatedWorkList,
-    });
+    setWorkList(updatedWorkList);
   };
 
-  handleAddEducation = () => {
+  const handleAddEducation = () => {
     const newEducation = {
       id: nanoid(),
       degree: '',
@@ -69,65 +64,52 @@ export default class CV extends Component {
       currentlyEnrolled: false,
     };
 
-    const updatedEducationList = [...this.state.educationList, newEducation];
+    const updatedEducationList = [...educationList, newEducation];
 
-    this.setState({
-      educationList: updatedEducationList,
-    });
+    setEducationList(updatedEducationList);
   };
 
-  handleChange = (e, list) => {
+  const handleChange = (e, list) => {
     const currentItem = e.target.closest('li');
     const name = e.target.name;
     const value =
       e.target.type === 'checkbox' ? e.target.checked : e.target.value;
 
-    const listCopy = this.state[list].map((item) => {
+    const listCopy = list.map((item) => {
       if (item.id === currentItem.id) {
         item[name] = value;
       }
       return item;
     });
 
-    this.setState({
-      [list]: listCopy,
-    });
+    list === workList ? setWorkList(listCopy) : setEducationList(listCopy);
   };
 
-  handleDeleteItem = (e, list) => {
+  const handleDeleteItem = (e, list) => {
     const currentItem = e.target.closest('li');
-    const listCopy = this.state[list].filter(
-      (item) => item.id !== currentItem.id
-    );
-    this.setState({
-      [list]: listCopy,
-    });
+    const listCopy = list.filter((item) => item.id !== currentItem.id);
+
+    list === workList ? setWorkList(listCopy) : setEducationList(listCopy);
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // Check whether all inputs are valid upon clicking the submit button
-    this.handleValidateOnSubmit()
+    handleValidateOnSubmit()
       ? // Reset errors to an empty object when all inputs are valid
-        this.setState(
-          {
-            editMode: !this.state.editMode,
-            errors: {},
-          },
-          () => {
-            document.documentElement.scrollTop = 0;
-          }
-        )
+        (function () {
+          setEditMode(!editMode);
+          setErrors({});
+          document.documentElement.scrollTop = 0;
+        })()
       : // Add a form error if any input is invalid upon submission
-        this.setState({
-          errors: {
-            ...this.state.errors,
-            form: 'Unable to preview your CV. Make sure all required fields are filled out and all fields have a valid input.',
-          },
+        setErrors({
+          ...errors,
+          form: 'Unable to preview your CV. Make sure all required fields are filled out and all fields have a valid input.',
         });
   };
 
-  handleValidateInputs = (e) => {
+  const handleValidateInputs = (e) => {
     const { name, value } = e.target;
 
     const errorTypes = {
@@ -139,11 +121,9 @@ export default class CV extends Component {
     };
 
     const setErrorState = (type) => {
-      this.setState({
-        errors: {
-          ...this.state.errors,
-          [name]: errorTypes[type],
-        },
+      setErrors({
+        ...errors,
+        [name]: errorTypes[type],
       });
     };
 
@@ -165,7 +145,7 @@ export default class CV extends Component {
     }
   };
 
-  handleValidateOnSubmit = () => {
+  const handleValidateOnSubmit = () => {
     const formIsValid = Array.from(document.querySelectorAll('input')).every(
       (input) => input.checkValidity()
     );
@@ -173,9 +153,9 @@ export default class CV extends Component {
     return formIsValid;
   };
 
-  handleResetCV = () => {
-    this.setState({
-      editMode: true,
+  const handleResetCV = () => {
+    setEditMode(true);
+    setPersonal({
       name: '',
       summary: '',
       phone: '',
@@ -183,132 +163,119 @@ export default class CV extends Component {
       location: '',
       linkedIn: '',
       personalSite: '',
-      workList: [],
-      educationList: [],
-      errors: {},
     });
+    setWorkList([]);
+    setEducationList([]);
+    setErrors({});
   };
 
-  render() {
-    const {
-      editMode,
-      name,
-      summary,
-      phone,
-      email,
-      location,
-      linkedIn,
-      personalSite,
-      workList,
-      educationList,
-      errors,
-    } = this.state;
+  const { name, summary, phone, email, location, linkedIn, personalSite } =
+    personal;
 
-    const cvEdit = (
-      <form className='l-form' autoComplete='off' noValidate>
-        <PersonalFieldset
-          name={name}
-          summary={summary}
-          phone={phone}
-          email={email}
-          location={location}
-          linkedIn={linkedIn}
-          personalSite={personalSite}
-          changeEvent={this.handleUpdatePersonal}
-          blurEvent={this.handleValidateInputs}
-          errors={errors}
-        />
-        <WorkFieldset
-          workList={workList}
-          addItemEvent={this.handleAddWork}
-          changeEvent={(e) => {
-            this.handleChange(e, 'workList');
-          }}
-          deleteItemEvent={(e) => {
-            this.handleDeleteItem(e, 'workList');
-          }}
-        />
-        <EducationFieldset
-          educationList={educationList}
-          addItemEvent={this.handleAddEducation}
-          changeEvent={(e) => {
-            this.handleChange(e, 'educationList');
-          }}
-          deleteItemEvent={(e) => {
-            this.handleDeleteItem(e, 'educationList');
-          }}
-        />
-        <div className='l-form__errors' aria-live='polite'>
-          {errors.form}
-        </div>
-        <div className='l-button-container'>
-          <button
-            type='submit'
-            className='c-button--contained'
-            value='submit'
-            onClick={this.handleSubmit}
-          >
-            Preview CV
-          </button>
-          <button
-            type='reset'
-            className='c-button--outline'
-            value='reset'
-            onClick={this.handleResetCV}
-          >
-            Reset CV
-          </button>
-        </div>
-      </form>
-    );
-
-    const cvPreview = (
-      <div className='l-preview-container'>
-        <PersonalPreview
-          name={name}
-          summary={summary}
-          phone={phone}
-          email={email}
-          location={location}
-          linkedIn={linkedIn}
-          personalSite={personalSite}
-        />
-        {workList.length ? <WorkPreview workList={workList} /> : null}
-        {educationList.length ? (
-          <EducationPreview educationList={educationList} />
-        ) : null}
-        <div className='l-button-container'>
-          <button
-            type='button'
-            className='c-button--contained'
-            value='edit'
-            onClick={this.handleSubmit}
-          >
-            Edit CV
-          </button>
-          <PDFDownloadLink
-            className='c-link--download'
-            document={
-              <PDF
-                name={name}
-                summary={summary}
-                phone={phone}
-                email={email}
-                location={location}
-                linkedIn={linkedIn}
-                personalSite={personalSite}
-                work={workList}
-                education={educationList}
-              />
-            }
-            fileName={'myCV'}
-          >
-            Download PDF
-          </PDFDownloadLink>
-        </div>
+  const cvEdit = (
+    <form className='l-form' autoComplete='off' noValidate>
+      <PersonalFieldset
+        name={name}
+        summary={summary}
+        phone={phone}
+        email={email}
+        location={location}
+        linkedIn={linkedIn}
+        personalSite={personalSite}
+        changeEvent={handleUpdatePersonal}
+        blurEvent={handleValidateInputs}
+        errors={errors}
+      />
+      <WorkFieldset
+        workList={workList}
+        addItemEvent={handleAddWork}
+        changeEvent={(e) => {
+          handleChange(e, workList);
+        }}
+        deleteItemEvent={(e) => {
+          handleDeleteItem(e, workList);
+        }}
+      />
+      <EducationFieldset
+        educationList={educationList}
+        addItemEvent={handleAddEducation}
+        changeEvent={(e) => {
+          handleChange(e, educationList);
+        }}
+        deleteItemEvent={(e) => {
+          handleDeleteItem(e, educationList);
+        }}
+      />
+      <div className='l-form__errors' aria-live='polite'>
+        {errors.form}
       </div>
-    );
+      <div className='l-button-container'>
+        <button
+          type='submit'
+          className='c-button--contained'
+          value='submit'
+          onClick={handleSubmit}
+        >
+          Preview CV
+        </button>
+        <button
+          type='reset'
+          className='c-button--outline'
+          value='reset'
+          onClick={handleResetCV}
+        >
+          Reset CV
+        </button>
+      </div>
+    </form>
+  );
 
-    return <>{editMode ? cvEdit : cvPreview}</>;
-  }
+  const cvPreview = (
+    <div className='l-preview-container'>
+      <PersonalPreview
+        name={name}
+        summary={summary}
+        phone={phone}
+        email={email}
+        location={location}
+        linkedIn={linkedIn}
+        personalSite={personalSite}
+      />
+      {workList.length ? <WorkPreview workList={workList} /> : null}
+      {educationList.length ? (
+        <EducationPreview educationList={educationList} />
+      ) : null}
+      <div className='l-button-container'>
+        <button
+          type='button'
+          className='c-button--contained'
+          value='edit'
+          onClick={handleSubmit}
+        >
+          Edit CV
+        </button>
+        <PDFDownloadLink
+          className='c-link--download'
+          document={
+            <PDF
+              name={name}
+              summary={summary}
+              phone={phone}
+              email={email}
+              location={location}
+              linkedIn={linkedIn}
+              personalSite={personalSite}
+              work={workList}
+              education={educationList}
+            />
+          }
+          fileName={'myCV'}
+        >
+          Download PDF
+        </PDFDownloadLink>
+      </div>
+    </div>
+  );
+
+  return <>{editMode ? cvEdit : cvPreview}</>;
 }

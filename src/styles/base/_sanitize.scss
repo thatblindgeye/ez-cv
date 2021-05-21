@@ -122,7 +122,7 @@ nav ul {
 /**
   * Prevent VoiceOver from ignoring list semantics in Safari (opinionated).
   *
-  * Remove this and add role=list instead
+  * Remove this and add role=list to ul elements instead
   */
 
 nav li::before {

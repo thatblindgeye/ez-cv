@@ -6,10 +6,10 @@
 /* light secondary-variant: +/- 200 of primary */
 
 $light: (
-  color-bg-accessibility-bar: color($neutral, 100),
+  color-bg-accessibility-bar: color($primary, 100),
   color-bg-base: color($neutral, 75),
   color-bg-checkbox-hover: color($neutral, 300),
-  color-bg-header: color($neutral, 100),
+  color-bg-header: color($primary, 100),
   color-bg-input: color($neutral, 50),
   color-border-input: color($neutral, 700, 0.6),
   color-border-input-focus: color($neutral, 900),
